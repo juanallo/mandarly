@@ -205,7 +205,7 @@ describe('TaskForm', () => {
 
   it('should show loading state during submission', async () => {
     const { TaskForm } = await import('@/components/tasks/task-form');
-    const mockOnSubmit = vi.fn(() => new Promise((resolve) => setTimeout(resolve, 100)));
+    const mockOnSubmit = vi.fn((): Promise<void> => new Promise((resolve) => setTimeout(resolve, 100)));
     
     render(
       <TestWrapper>

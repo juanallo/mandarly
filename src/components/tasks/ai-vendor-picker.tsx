@@ -37,7 +37,7 @@ export function AIVendorPicker({ value, onChange }: AIVendorPickerProps) {
               </button>
             </TooltipTrigger>
             <TooltipContent className="max-w-xs">
-              <p>Select the AI tool or service you'll use to execute this task. Each vendor has different strengths for various coding tasks.</p>
+              <p>Select the AI tool or service you&apos;ll use to execute this task. Each vendor has different strengths for various coding tasks.</p>
             </TooltipContent>
           </Tooltip>
         </div>

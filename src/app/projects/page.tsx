@@ -161,20 +161,15 @@ export default function ProjectsPage() {
       ) : (
         <>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => {
-              // #region agent log
-              fetch('http://127.0.0.1:7242/ingest/47654bf1-8284-473e-87a3-0ade33c8d6da',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects/page.tsx:163',message:'Rendering ProjectCard wrapped in Link',data:{projectId:project.id,isWrappedInLink:true},timestamp:Date.now(),sessionId:'debug-session',runId:'post-fix',hypothesisId:'B'})}).catch(()=>{});
-              // #endregion
-              return (
-                <Link key={project.id} href={`/projects/${project.id}`}>
-                  <ProjectCard
-                    project={project}
-                    onEdit={handleEdit}
-                    onDelete={handleDeleteClick}
-                  />
-                </Link>
-              );
-            })}
+            {projects.map((project) => (
+              <Link key={project.id} href={`/projects/${project.id}`}>
+                <ProjectCard
+                  project={project}
+                  onEdit={handleEdit}
+                  onDelete={handleDeleteClick}
+                />
+              </Link>
+            ))}
           </div>
 
           {/* Pagination info */}
@@ -232,7 +227,7 @@ export default function ProjectsPage() {
           <DialogHeader>
             <DialogTitle>Delete Project</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete "{selectedProject?.name}"? Tasks in this project will become unassigned.
+              Are you sure you want to delete &quot;{selectedProject?.name}&quot;? Tasks in this project will become unassigned.
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-end gap-2">

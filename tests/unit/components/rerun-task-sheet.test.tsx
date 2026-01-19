@@ -286,7 +286,7 @@ describe('RerunTaskSheet', () => {
 
   it('should disable submit during submission', async () => {
     const { RerunTaskSheet } = await import('@/components/tasks/rerun-task-sheet');
-    const mockOnSubmit = vi.fn(() => new Promise((resolve) => setTimeout(resolve, 100)));
+    const mockOnSubmit = vi.fn((): Promise<void> => new Promise((resolve) => setTimeout(resolve, 100)));
     const mockTask = {
       id: 'task-123',
       description: 'Task',

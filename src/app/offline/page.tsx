@@ -12,10 +12,10 @@ export default function OfflinePage() {
             </div>
             
             <div className="space-y-2">
-              <h1 className="text-2xl font-bold">You're Offline</h1>
+              <h1 className="text-2xl font-bold">You&apos;re Offline</h1>
               <p className="text-muted-foreground">
-                It looks like you've lost your internet connection. 
-                Some features may not be available until you're back online.
+                It looks like you&apos;ve lost your internet connection. 
+                Some features may not be available until you&apos;re back online.
               </p>
             </div>
 
