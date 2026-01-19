@@ -1,4 +1,4 @@
-# Quickstart: AI Task Tracker
+# Quickstart: Mandarly
 
 **Feature**: 001-ai-task-tracker  
 **Date**: 2026-01-18
@@ -125,7 +125,7 @@ Create `.env.local`:
 DATABASE_URL=".data/tracker.db"
 
 # App
-NEXT_PUBLIC_APP_NAME="AI Task Tracker"
+NEXT_PUBLIC_APP_NAME="Mandarly"
 ```
 
 ## Key Files to Create

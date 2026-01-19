@@ -140,12 +140,7 @@ export default function ProjectsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Projects</h1>
-          <p className="text-muted-foreground mt-1">
-            Organize your tasks into projects
-          </p>
-        </div>
+        <h1 className="text-3xl font-bold">Projects</h1>
         <Button onClick={() => setIsCreateDialogOpen(true)}>
           <Plus className="mr-2 h-4 w-4" />
           New Project
@@ -157,6 +152,10 @@ export default function ProjectsPage() {
         <EmptyState
           title="No projects yet"
           description="Create your first project to organize your tasks"
+          action={{
+            label: 'Create Project',
+            onClick: () => setIsCreateDialogOpen(true),
+          }}
         />
       ) : (
         <>

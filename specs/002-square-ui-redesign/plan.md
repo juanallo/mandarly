@@ -5,7 +5,7 @@
 
 ## Summary
 
-Redesign the AI Task Tracker interface using Square UI design patterns to create a modern, polished task management experience. This is a **presentation layer update only** - no schema changes. Key deliverables include a kanban board layout, collapsible sidebar, enhanced header with breadcrumbs, and improved visual styling for task cards and stats.
+Redesign the Mandarly interface using Square UI design patterns to create a modern, polished task management experience. This is a **presentation layer update only** - no schema changes. Key deliverables include a kanban board layout, collapsible sidebar, enhanced header with breadcrumbs, and improved visual styling for task cards and stats.
 
 ## Technical Context
 

@@ -1,4 +1,4 @@
-# Research: AI Task Tracker
+# Research: Mandarly
 
 **Feature**: 001-ai-task-tracker  
 **Date**: 2026-01-18

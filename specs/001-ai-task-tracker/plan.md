@@ -1,4 +1,4 @@
-# Implementation Plan: AI Task Tracker
+# Implementation Plan: Mandarly
 
 **Branch**: `001-ai-task-tracker` | **Date**: 2026-01-18 | **Spec**: [spec.md](./spec.md)
 **Input**: Feature specification from `/specs/001-ai-task-tracker/spec.md`

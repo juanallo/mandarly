@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { SidebarToggle } from './sidebar-toggle';
-import { UserNav } from './user-nav';
 import { useSidebarContext } from '@/components/sidebar-provider';
 
 const mainNavigation = [
@@ -41,7 +40,7 @@ export function Sidebar() {
         )}
         aria-label={item.name}
       >
-        <Icon className="h-5 w-5 flex-shrink-0" />
+        <Icon className="h-5 w-5 shrink-0" />
         {!isCollapsed && <span>{item.name}</span>}
       </Link>
     );
@@ -73,7 +72,7 @@ export function Sidebar() {
         {/* Workspace Branding */}
         <div className="flex h-16 items-center justify-between border-b px-4">
           {!isCollapsed && (
-            <h1 className="text-xl font-bold">AI Task Tracker</h1>
+            <h1 className="text-xl font-bold">Mandarly</h1>
           )}
           <SidebarToggle 
             collapsed={isCollapsed} 
@@ -128,11 +127,6 @@ export function Sidebar() {
             {settingsNavigation.map(renderNavLink)}
           </div>
         </nav>
-
-        {/* User Profile Section */}
-        <div className="border-t p-4">
-          <UserNav collapsed={isCollapsed} />
-        </div>
       </div>
     </TooltipProvider>
   );

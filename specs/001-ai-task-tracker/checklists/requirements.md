@@ -1,4 +1,4 @@
-# Specification Quality Checklist: AI Task Tracker
+# Specification Quality Checklist: Mandarly
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning  
 **Created**: 2026-01-18  

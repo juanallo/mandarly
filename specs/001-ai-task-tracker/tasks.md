@@ -1,4 +1,4 @@
-# Tasks: AI Task Tracker
+# Tasks: Mandarly
 
 **Input**: Design documents from `/specs/001-ai-task-tracker/`
 **Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/api-schema.ts, quickstart.md

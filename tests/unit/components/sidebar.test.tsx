@@ -30,7 +30,7 @@ describe('Sidebar', () => {
   it('should render workspace branding', () => {
     render(<Sidebar />);
 
-    expect(screen.getByText('AI Task Tracker')).toBeInTheDocument();
+    expect(screen.getByText('Mandarly')).toBeInTheDocument();
   });
 
   it('should render main navigation items', () => {

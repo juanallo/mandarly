@@ -57,85 +57,83 @@ export function TaskFilters({ filters, onFiltersChange, projects = [] }: TaskFil
   };
 
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {/* Search */}
-        <div className="space-y-2">
-          <Label htmlFor="search">Search</Label>
-          <div className="relative">
-            <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              id="search"
-              placeholder="Search tasks..."
-              value={filters.search || ''}
-              onChange={(e) => updateFilter('search', e.target.value)}
-              className="pl-8"
-            />
-          </div>
+    <div className="flex items-end gap-4">
+      {/* Search */}
+      <div className="space-y-2">
+        <Label htmlFor="search">Search</Label>
+        <div className="relative">
+          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input
+            id="search"
+            placeholder="Search tasks..."
+            value={filters.search || ''}
+            onChange={(e) => updateFilter('search', e.target.value)}
+            className="pl-8"
+          />
         </div>
+      </div>
 
-        {/* Status Filter */}
-        <div className="space-y-2">
-          <Label htmlFor="status">Status</Label>
-          <Select
-            value={filters.status || 'all'}
-            onValueChange={(value) => updateFilter('status', value)}
-          >
-            <SelectTrigger id="status">
-              <SelectValue placeholder="All statuses" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All statuses</SelectItem>
-              {STATUS_OPTIONS.map((status) => (
-                <SelectItem key={status} value={status} className="capitalize">
-                  {status}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+      {/* Status Filter */}
+      <div className="space-y-2">
+        <Label htmlFor="status">Status</Label>
+        <Select
+          value={filters.status || 'all'}
+          onValueChange={(value) => updateFilter('status', value)}
+        >
+          <SelectTrigger id="status">
+            <SelectValue placeholder="All statuses" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All statuses</SelectItem>
+            {STATUS_OPTIONS.map((status) => (
+              <SelectItem key={status} value={status} className="capitalize">
+                {status}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
-        {/* Environment Filter */}
-        <div className="space-y-2">
-          <Label htmlFor="environment">Environment</Label>
-          <Select
-            value={filters.environmentType || 'all'}
-            onValueChange={(value) => updateFilter('environmentType', value)}
-          >
-            <SelectTrigger id="environment">
-              <SelectValue placeholder="All environments" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All environments</SelectItem>
-              {ENVIRONMENT_OPTIONS.map((env) => (
-                <SelectItem key={env} value={env} className="capitalize">
-                  {env}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+      {/* Environment Filter */}
+      <div className="space-y-2">
+        <Label htmlFor="environment">Environment</Label>
+        <Select
+          value={filters.environmentType || 'all'}
+          onValueChange={(value) => updateFilter('environmentType', value)}
+        >
+          <SelectTrigger id="environment">
+            <SelectValue placeholder="All environments" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All environments</SelectItem>
+            {ENVIRONMENT_OPTIONS.map((env) => (
+              <SelectItem key={env} value={env} className="capitalize">
+                {env}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
-        {/* AI Vendor Filter */}
-        <div className="space-y-2">
-          <Label htmlFor="ai-vendor">AI Vendor</Label>
-          <Select
-            value={filters.aiVendor || 'all'}
-            onValueChange={(value) => updateFilter('aiVendor', value)}
-          >
-            <SelectTrigger id="ai-vendor">
-              <SelectValue placeholder="All vendors" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All vendors</SelectItem>
-              {AI_VENDOR_OPTIONS.map((vendor) => (
-                <SelectItem key={vendor} value={vendor} className="capitalize">
-                  {vendor}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+      {/* AI Vendor Filter */}
+      <div className="space-y-2">
+        <Label htmlFor="ai-vendor">AI Vendor</Label>
+        <Select
+          value={filters.aiVendor || 'all'}
+          onValueChange={(value) => updateFilter('aiVendor', value)}
+        >
+          <SelectTrigger id="ai-vendor">
+            <SelectValue placeholder="All vendors" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All vendors</SelectItem>
+            {AI_VENDOR_OPTIONS.map((vendor) => (
+              <SelectItem key={vendor} value={vendor} className="capitalize">
+                {vendor}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Project Filter (if projects available) */}

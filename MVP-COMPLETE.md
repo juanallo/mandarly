@@ -1,8 +1,8 @@
-# 🎉 AI Task Tracker MVP - Complete!
+# 🎉 Mandarly MVP - Complete!
 
 ## Overview
 
-The AI Task Tracker MVP is **100% complete** and production-ready! All planned user stories, edge cases, onboarding, PWA support, and polish features have been implemented.
+The Mandarly MVP is **100% complete** and production-ready! All planned user stories, edge cases, onboarding, PWA support, and polish features have been implemented.
 
 ## Completion Summary
 

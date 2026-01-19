@@ -160,6 +160,10 @@ export function useUpdateTask() {
       // Invalidate lists to refresh
       queryClient.invalidateQueries({ queryKey: taskKeys.lists() });
       queryClient.invalidateQueries({ queryKey: ['dashboard'] });
+      
+      // Invalidate history query to refresh status history after status change
+      const historyQueryKey = [...taskKeys.detail(updatedTask.id), 'history'];
+      queryClient.invalidateQueries({ queryKey: historyQueryKey });
     },
   });
 }

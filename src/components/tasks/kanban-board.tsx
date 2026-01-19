@@ -35,7 +35,7 @@ export function KanbanBoard({
     return (
       <div className={cn('flex gap-4 overflow-x-auto pb-4', className)}>
         {STATUS_ORDER.map((status) => (
-          <Skeleton key={status} className="h-96 w-80 flex-shrink-0" />
+          <Skeleton key={status} className="h-96 w-80 shrink-0" />
         ))}
       </div>
     );
@@ -50,7 +50,7 @@ export function KanbanBoard({
   return (
     <div
       className={cn(
-        'flex gap-4 overflow-x-auto pb-4',
+        'flex gap-4 overflow-x-auto overflow-y-hidden h-full',
         // Add scrollbar styling
         'scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-300',
         className

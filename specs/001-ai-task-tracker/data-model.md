@@ -1,4 +1,4 @@
-# Data Model: AI Task Tracker
+# Data Model: Mandarly
 
 **Feature**: 001-ai-task-tracker  
 **Date**: 2026-01-18

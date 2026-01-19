@@ -1,11 +1,14 @@
 'use client';
 
 import { TaskCard } from './task-card';
+import { TaskStatusBadge } from './task-status-badge';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { TaskWithProject } from '@/lib/api/schemas';
 import type { StatusConfig } from '@/lib/constants';
-import * as LucideIcons from 'lucide-react';
+import { Plus, MoreHorizontal } from 'lucide-react';
+import Link from 'next/link';
 
 interface KanbanColumnProps {
   status: StatusConfig;
@@ -22,26 +25,38 @@ export function KanbanColumn({
   onRerun,
   className,
 }: KanbanColumnProps) {
-  // Get the icon component dynamically
-  const IconComponent = (LucideIcons as any)[status.iconName] || LucideIcons.Circle;
-
   return (
     <div
       className={cn(
-        'flex w-80 flex-shrink-0 flex-col rounded-lg border-2 bg-gray-50',
-        status.borderColor,
+        'flex w-80 shrink-0 flex-col rounded-lg bg-gray-50 shadow-sm border border-gray-300 h-full',
         className
       )}
     >
       {/* Column Header */}
-      <div className={cn('flex items-center justify-between border-b-2 p-4', status.bgColor, status.borderColor)}>
+      <div className="flex items-end justify-between border-b border-gray-200 pt-6 pb-3 px-4">
+        <TaskStatusBadge status={status.status} showIcon={true} />
         <div className="flex items-center gap-2">
-          <IconComponent className={cn('h-5 w-5', status.color)} />
-          <h3 className={cn('font-semibold', status.color)}>{status.label}</h3>
+          <Badge variant="secondary" className="h-5 px-2 text-xs font-medium bg-gray-100 text-gray-700 rounded">
+            {tasks.length}
+          </Badge>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-6 w-6 text-gray-600 hover:text-gray-900"
+            asChild
+          >
+            <Link href="/tasks/new">
+              <Plus className="h-4 w-4" />
+            </Link>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-6 w-6 text-gray-600 hover:text-gray-900"
+          >
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
         </div>
-        <Badge variant="secondary" className="h-6">
-          {tasks.length}
-        </Badge>
       </div>
 
       {/* Column Content - Scrollable */}
@@ -61,6 +76,20 @@ export function KanbanColumn({
             </div>
           ))
         )}
+      </div>
+
+      {/* Add Task Button */}
+      <div className="p-4 border-t border-gray-300">
+        <Button
+          variant="ghost"
+          className="w-full justify-start text-gray-600 hover:text-gray-900"
+          asChild
+        >
+          <Link href="/tasks/new" className="flex items-center gap-2">
+            <Plus className="h-4 w-4" />
+            <span>Add task</span>
+          </Link>
+        </Button>
       </div>
     </div>
   );

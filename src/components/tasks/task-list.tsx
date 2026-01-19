@@ -120,19 +120,28 @@ export function TaskList({
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="h-full flex flex-col">
+      <div className="flex items-end justify-between mb-6 shrink-0 px-6 pt-6">
         <TaskFilters filters={filters} onFiltersChange={setFilters} projects={projects} />
         <ViewToggle viewMode={viewMode} onViewModeChange={setViewMode} />
       </div>
 
       {viewMode === 'kanban' ? (
-        <KanbanBoard
-          tasks={filteredTasks}
-          isLoading={isLoading}
-          onTaskClick={handleTaskClick}
-          onRerun={onRerun}
-        />
+        <div className="flex flex-col flex-1 min-h-0 px-6 pb-6">
+          <div className="flex flex-col flex-1 min-h-0">
+            <div className="flex-1 overflow-hidden min-h-0">
+              <KanbanBoard
+                tasks={filteredTasks}
+                isLoading={isLoading}
+                onTaskClick={handleTaskClick}
+                onRerun={onRerun}
+              />
+            </div>
+            <div className="text-sm text-muted-foreground text-center py-2 shrink-0">
+              Showing {filteredTasks.length} of {tasks.length} tasks
+            </div>
+          </div>
+        </div>
       ) : groupByProject && groupedTasks ? (
         <div className="space-y-8">
           {groupedTasks.map((group) => (
@@ -175,24 +184,24 @@ function ViewToggle({
   onViewModeChange: (mode: ViewMode) => void;
 }) {
   return (
-    <div className="flex items-center gap-2 rounded-lg border p-1">
+    <div className="flex items-center gap-1 rounded-lg border p-0.5">
       <Button
         variant={viewMode === 'grid' ? 'secondary' : 'ghost'}
         size="sm"
         onClick={() => onViewModeChange('grid')}
-        className="h-8"
+        className="h-7 w-7 p-0"
         aria-label="Grid view"
       >
-        <LayoutGrid className="h-4 w-4" />
+        <LayoutGrid className="h-3.5 w-3.5" />
       </Button>
       <Button
         variant={viewMode === 'kanban' ? 'secondary' : 'ghost'}
         size="sm"
         onClick={() => onViewModeChange('kanban')}
-        className="h-8"
+        className="h-7 w-7 p-0"
         aria-label="Kanban view"
       >
-        <Columns3 className="h-4 w-4" />
+        <Columns3 className="h-3.5 w-3.5" />
       </Button>
     </div>
   );

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db/client';
 import { tasks, projects } from '@/lib/db/schema';
-import { eq, sql, and, gte, desc } from 'drizzle-orm';
+import { eq, sql, and, gte, lt, desc } from 'drizzle-orm';
 
 // Helper function to calculate trend
 function calculateTrend(current: number, previous: number): {
@@ -76,6 +76,7 @@ export async function GET() {
       .where(
         and(
           eq(tasks.status, 'completed'),
+          sql`${tasks.completedAt} IS NOT NULL`,
           gte(tasks.completedAt, today)
         )
       );
@@ -87,8 +88,9 @@ export async function GET() {
       .where(
         and(
           eq(tasks.status, 'completed'),
+          sql`${tasks.completedAt} IS NOT NULL`,
           gte(tasks.completedAt, yesterday),
-          sql`${tasks.completedAt} < ${today}`
+          lt(tasks.completedAt, today)
         )
       );
 
@@ -99,6 +101,7 @@ export async function GET() {
       .where(
         and(
           eq(tasks.status, 'failed'),
+          sql`${tasks.completedAt} IS NOT NULL`,
           gte(tasks.completedAt, today)
         )
       );
@@ -110,8 +113,9 @@ export async function GET() {
       .where(
         and(
           eq(tasks.status, 'failed'),
+          sql`${tasks.completedAt} IS NOT NULL`,
           gte(tasks.completedAt, yesterday),
-          sql`${tasks.completedAt} < ${today}`
+          lt(tasks.completedAt, today)
         )
       );
 
