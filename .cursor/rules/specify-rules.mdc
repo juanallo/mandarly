@@ -3,6 +3,8 @@
 Auto-generated from all feature plans. Last updated: 2026-01-18
 
 ## Active Technologies
+- TypeScript 5.9, React 19, Next.js 16 + shadcn/ui, Tailwind CSS 4, Radix UI, Lucide React, cmdk (002-square-ui-redesign)
+- SQLite via Drizzle ORM (unchanged) (002-square-ui-redesign)
 
 - TypeScript 5.x, Node.js 20+ (001-ai-task-tracker)
 
@@ -22,6 +24,7 @@ npm test && npm run lint
 TypeScript 5.x, Node.js 20+: Follow standard conventions
 
 ## Recent Changes
+- 002-square-ui-redesign: Added TypeScript 5.9, React 19, Next.js 16 + shadcn/ui, Tailwind CSS 4, Radix UI, Lucide React, cmdk
 
 - 001-ai-task-tracker: Added TypeScript 5.x, Node.js 20+
 
