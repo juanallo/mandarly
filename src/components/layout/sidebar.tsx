@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, CheckSquare, FolderKanban, Settings } from 'lucide-react';
+import { Home, CheckSquare, FolderKanban, Settings, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
@@ -20,7 +21,17 @@ export function Sidebar() {
       <div className="flex h-16 items-center border-b px-6">
         <h1 className="text-xl font-bold">AI Task Tracker</h1>
       </div>
-      <nav className="flex-1 space-y-1 p-4">
+      
+      <div className="p-4">
+        <Link href="/tasks/new">
+          <Button className="w-full gap-2">
+            <Plus className="h-4 w-4" />
+            New Task
+          </Button>
+        </Link>
+      </div>
+
+      <nav className="flex-1 space-y-1 px-4 pb-4">
         {navigation.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href;

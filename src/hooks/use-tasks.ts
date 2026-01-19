@@ -72,4 +72,21 @@ export function useCreateTask() {
   });
 }
 
+// Fetch single task
+async function fetchTask(id: string): Promise<TaskWithProject> {
+  const response = await fetch(`/api/tasks/${id}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch task');
+  }
+  return response.json();
+}
+
+export function useTask(id: string) {
+  return useQuery({
+    queryKey: taskKeys.detail(id),
+    queryFn: () => fetchTask(id),
+    staleTime: 30000, // 30 seconds
+  });
+}
+
 // Additional hooks will be added as we implement more features

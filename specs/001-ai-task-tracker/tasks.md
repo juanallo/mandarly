@@ -97,23 +97,23 @@
 
 ### Tests for User Story 2 (Write FIRST, verify they FAIL)
 
-- [ ] T041 [P] [US2] Unit test for EnvironmentSelector component in tests/unit/components/environment-selector.test.tsx
-- [ ] T042 [P] [US2] Unit test for TaskForm validation in tests/unit/components/task-form.test.tsx
-- [ ] T043 [P] [US2] Integration test for POST /api/tasks endpoint in tests/integration/api/tasks-create.test.ts
-- [ ] T044 [US2] E2E test for task creation flow in tests/e2e/create-task.spec.ts
+- [X] T041 [P] [US2] Unit test for EnvironmentSelector component in tests/unit/components/environment-selector.test.tsx
+- [X] T042 [P] [US2] Unit test for TaskForm validation in tests/unit/components/task-form.test.tsx
+- [X] T043 [P] [US2] Integration test for POST /api/tasks endpoint in tests/integration/api/tasks-create.test.ts
+- [X] T044 [US2] E2E test for task creation flow in tests/e2e/create-task.spec.ts
 
 ### Implementation for User Story 2
 
-- [ ] T045 [US2] Create EnvironmentSelector component in src/components/tasks/environment-selector.tsx with local/worktree/remote tabs and type-specific config fields
-- [ ] T046 [P] [US2] Create AIVendorPicker component in src/components/tasks/ai-vendor-picker.tsx with grid of vendor options (claude, chatgpt, gemini, cursor, copilot, windsurf, cody, aider, other)
-- [ ] T047 [P] [US2] Create ProjectSelector component in src/components/projects/project-selector.tsx with dropdown to select existing project or none
-- [ ] T048 [US2] Create TaskForm component in src/components/tasks/task-form.tsx composing description input, EnvironmentSelector, AIVendorPicker, ProjectSelector with react-hook-form and Zod validation
-- [ ] T049 [US2] Create POST /api/tasks route handler in src/app/api/tasks/route.ts validating CreateTaskRequest, inserting task, creating initial StatusHistory entry
-- [ ] T050 [US2] Create useCreateTask mutation hook in src/hooks/use-tasks.ts with optimistic update and cache invalidation
-- [ ] T051 [US2] Create create task page in src/app/tasks/new/page.tsx with TaskForm and success redirect to task detail
-- [ ] T052 [US2] Add "New Task" button to Sidebar and Tasks page header linking to /tasks/new
-- [ ] T053 [US2] Create GET /api/tasks/[id] route handler in src/app/api/tasks/[id]/route.ts for fetching single task with project
-- [ ] T054 [US2] Create task detail page in src/app/tasks/[id]/page.tsx displaying full task information and configuration
+- [X] T045 [US2] Create EnvironmentSelector component in src/components/tasks/environment-selector.tsx with local/worktree/remote tabs and type-specific config fields
+- [X] T046 [P] [US2] Create AIVendorPicker component in src/components/tasks/ai-vendor-picker.tsx with grid of vendor options (claude, chatgpt, gemini, cursor, copilot, windsurf, cody, aider, other)
+- [X] T047 [P] [US2] Create ProjectSelector component in src/components/projects/project-selector.tsx with dropdown to select existing project or none
+- [X] T048 [US2] Create TaskForm component in src/components/tasks/task-form.tsx composing description input, EnvironmentSelector, AIVendorPicker, ProjectSelector with react-hook-form and Zod validation
+- [X] T049 [US2] Create POST /api/tasks route handler in src/app/api/tasks/route.ts validating CreateTaskRequest, inserting task, creating initial StatusHistory entry
+- [X] T050 [US2] Create useCreateTask mutation hook in src/hooks/use-tasks.ts with optimistic update and cache invalidation
+- [X] T051 [US2] Create create task page in src/app/tasks/new/page.tsx with TaskForm and success redirect to task detail
+- [X] T052 [US2] Add "New Task" button to Sidebar and Tasks page header linking to /tasks/new
+- [X] T053 [US2] Create GET /api/tasks/[id] route handler in src/app/api/tasks/[id]/route.ts for fetching single task with project
+- [X] T054 [US2] Create task detail page in src/app/tasks/[id]/page.tsx displaying full task information and configuration
 
 **Checkpoint**: User Story 2 complete - can create tasks with full configuration
 

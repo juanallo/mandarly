@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Database files
+.data/
+*.db
+*.db-journal
+
+# Testing coverage
+coverage/
+
+# Environment files
+.env
+.env*.local
+
+# Generated files
+*.tsbuildinfo
+next-env.d.ts
+
+# Drizzle migrations (auto-generated)
+src/lib/db/migrations/
+
+# IDE
+.vscode/
+.idea/

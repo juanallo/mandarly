@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db/client';
-import { tasks, projects } from '@/lib/db/schema';
+import { tasks, projects, statusHistory } from '@/lib/db/schema';
 import { ListTasksQuery, CreateTaskRequest, TaskStatus } from '@/lib/api/schemas';
 import { and, eq, like, desc, asc, sql, or } from 'drizzle-orm';
 import { createId } from '@paralleldrive/cuid2';
@@ -147,6 +147,13 @@ export async function POST(request: NextRequest) {
       .returning();
     
     const newTask = Array.isArray(newTaskResult) ? newTaskResult[0] : newTaskResult;
+
+    // Create initial status history entry
+    await db.insert(statusHistory).values({
+      taskId: newTask.id,
+      status: 'pending',
+      message: 'Task created',
+    });
 
     // Fetch the created task with project info
     const [taskWithProject] = await db
