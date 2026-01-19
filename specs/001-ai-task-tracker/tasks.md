@@ -261,13 +261,13 @@
 
 **Purpose**: Full Progressive Web App with offline capability per plan.md
 
-- [ ] T115 Install next-pwa package and configure in next.config.js with service worker generation
-- [ ] T116 Create public/manifest.json with app name, icons, theme colors, and display mode
-- [ ] T117 [P] Add PWA meta tags and manifest link to src/app/layout.tsx
-- [ ] T118 [P] Create app icons (192x192, 512x512) in public/icons/ directory
-- [ ] T119 Configure service worker caching strategy: cache-first for static assets, network-first for API routes
-- [ ] T120 Add offline fallback page in src/app/offline/page.tsx for when network unavailable
-- [ ] T121 Test PWA installation on desktop and mobile browsers
+- [X] T115 Install next-pwa package and configure in next.config.js with service worker generation
+- [X] T116 Create public/manifest.json with app name, icons, theme colors, and display mode
+- [X] T117 [P] Add PWA meta tags and manifest link to src/app/layout.tsx
+- [X] T118 [P] Create app icons (192x192, 512x512) in public/icons/ directory
+- [X] T119 Configure service worker caching strategy: cache-first for static assets, network-first for API routes
+- [X] T120 Add offline fallback page in src/app/offline/page.tsx for when network unavailable
+- [X] T121 Test PWA installation on desktop and mobile browsers
 
 ---
 
