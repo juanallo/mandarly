@@ -207,8 +207,8 @@
 
 ### Tests for User Story 6 (Write FIRST, verify they FAIL)
 
-- [ ] T087 [P] [US6] Integration test for presets CRUD API in tests/integration/api/presets.test.ts
-- [ ] T088 [US6] Unit test for preset auto-fill in TaskForm in tests/unit/components/task-form-preset.test.tsx
+- [X] T087 [P] [US6] Integration test for presets CRUD API in tests/integration/api/presets.test.ts
+- [X] T088 [US6] Unit test for preset auto-fill in TaskForm in tests/unit/components/task-form-preset.test.tsx
 
 ### Implementation for User Story 6
 
