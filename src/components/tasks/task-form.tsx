@@ -15,8 +15,10 @@ import { AIVendorPicker } from './ai-vendor-picker';
 import { ProjectSelector } from '@/components/projects/project-selector';
 import { PresetForm } from '@/components/presets/preset-form';
 import { usePresets, useCreatePreset } from '@/hooks/use-presets';
+import { useTasks } from '@/hooks/use-tasks';
 import { useToast } from '@/hooks/use-toast';
-import { Save } from 'lucide-react';
+import { Save, AlertTriangle } from 'lucide-react';
+import { detectConcurrentTasks } from '@/lib/concurrent-task-detector';
 import type { EnvironmentConfig, AIVendor } from '@/types';
 
 // Form validation schema
@@ -49,6 +51,7 @@ interface TaskFormProps {
 
 export function TaskForm({ onSubmit, defaultValues, isLoading = false }: TaskFormProps) {
   const { data: presetsData } = usePresets();
+  const { data: tasksData } = useTasks();
   const createPreset = useCreatePreset();
   const { toast } = useToast();
   const [selectedPresetId, setSelectedPresetId] = useState<string | null>(null);
@@ -76,6 +79,7 @@ export function TaskForm({ onSubmit, defaultValues, isLoading = false }: TaskFor
   const environmentConfig = watch('environmentConfig');
   const aiVendor = watch('aiVendor');
   const projectId = watch('projectId');
+  const branchName = watch('branchName');
 
   const handleFormSubmit = async (data: TaskFormData) => {
     try {
@@ -123,6 +127,12 @@ export function TaskForm({ onSubmit, defaultValues, isLoading = false }: TaskFor
     environmentConfig: environmentConfig,
     aiVendor: aiVendor,
   });
+
+  // Check for concurrent task conflicts
+  const concurrentConflict = detectConcurrentTasks(
+    { environmentConfig, branchName },
+    tasksData?.items || []
+  );
 
   const presets = presetsData?.items || [];
 
@@ -176,7 +186,21 @@ export function TaskForm({ onSubmit, defaultValues, isLoading = false }: TaskFor
           onChange={(value) => setValue('projectId', value)}
         />
 
-      {/* Environment Configuration */}
+        {/* Concurrent Task Warning */}
+        {concurrentConflict.hasConflict && (
+          <div className="flex items-start gap-2 text-sm text-amber-700 bg-amber-50 border border-amber-200 p-3 rounded">
+            <AlertTriangle className="h-5 w-5 mt-0.5 shrink-0" />
+            <div>
+              <p className="font-medium">Concurrent Task Warning</p>
+              <p className="text-xs mt-1">{concurrentConflict.message}</p>
+              <p className="text-xs mt-1 text-amber-600">
+                You can still proceed, but be aware of potential conflicts.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Environment Configuration */}
       <div className="space-y-2">
         <Label>Environment*</Label>
         <EnvironmentSelector

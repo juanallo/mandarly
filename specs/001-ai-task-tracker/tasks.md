@@ -232,15 +232,15 @@
 
 **Purpose**: Implement robustness for edge cases defined in spec.md
 
-- [ ] T100 [P] Create environment validation utility in src/lib/environment-validator.ts to check worktree path existence and remote reachability
-- [ ] T101 [P] Add "stale environment" warning badge to TaskCard when worktree path no longer exists (G3)
-- [ ] T102 Add environment re-validation on task detail page load with warning UI and "Update Environment" action
-- [ ] T103 [P] Create AI vendor availability checker in src/lib/vendor-validator.ts with fallback suggestions (G4)
-- [ ] T104 Add vendor warning to TaskCard and task detail when configured vendor may be unavailable
-- [ ] T105 Implement "disconnected" status handling UI with retry button for remote environment tasks (G2)
-- [ ] T106 Add connection status indicator to TaskCard for remote environment tasks
-- [ ] T107 Create concurrent task detector in src/lib/concurrent-task-detector.ts checking for running tasks with same environment AND same branch (or no branch)
-- [ ] T108 Add concurrent task warning banner to task creation form when conflict detected, allowing user to proceed
+- [X] T100 [P] Create environment validation utility in src/lib/environment-validator.ts to check worktree path existence and remote reachability
+- [X] T101 [P] Add "stale environment" warning badge to TaskCard when worktree path no longer exists (G3)
+- [X] T102 Add environment re-validation on task detail page load with warning UI and "Update Environment" action
+- [X] T103 [P] Create AI vendor availability checker in src/lib/vendor-validator.ts with fallback suggestions (G4)
+- [X] T104 Add vendor warning to TaskCard and task detail when configured vendor may be unavailable
+- [X] T105 Implement "disconnected" status handling UI with retry button for remote environment tasks (G2)
+- [X] T106 Add connection status indicator to TaskCard for remote environment tasks
+- [X] T107 Create concurrent task detector in src/lib/concurrent-task-detector.ts checking for running tasks with same environment AND same branch (or no branch)
+- [X] T108 Add concurrent task warning banner to task creation form when conflict detected, allowing user to proceed
 
 ---
 

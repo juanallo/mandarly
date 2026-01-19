@@ -4,7 +4,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { TaskWithProject } from '@/lib/api/schemas';
-import { Clock, GitBranch, Laptop, Server, FolderGit2, AlertCircle, RotateCcw } from 'lucide-react';
+import type { AIVendor } from '@/types';
+import { Clock, GitBranch, Laptop, Server, FolderGit2, AlertCircle, RotateCcw, AlertTriangle } from 'lucide-react';
+import { isEnvironmentStale, getStaleEnvironmentWarning } from '@/lib/environment-validator';
+import { getVendorWarningMessage } from '@/lib/vendor-validator';
 
 interface TaskCardProps {
   task: TaskWithProject;
@@ -50,6 +53,15 @@ export function TaskCard({ task, className, onRerun }: TaskCardProps) {
     ? calculateDuration(task.startedAt)
     : null;
 
+  const environmentWarning = isEnvironmentStale(task.environmentConfig)
+    ? getStaleEnvironmentWarning(task.environmentConfig)
+    : null;
+
+  const vendorWarning = getVendorWarningMessage(task.aiVendor as AIVendor);
+
+  // Show warnings for active tasks (not terminal states)
+  const showWarnings = task.status !== 'completed' && task.status !== 'failed';
+
   return (
     <Card className={cn('hover:shadow-md transition-shadow', className)} role="article">
       <CardHeader className="pb-3">
@@ -89,14 +101,41 @@ export function TaskCard({ task, className, onRerun }: TaskCardProps) {
           <div className="flex items-center gap-1">
             {getEnvironmentIcon(task.environmentType)}
             <span className="capitalize">{task.environmentType}</span>
+            {showWarnings && environmentWarning && (
+              <Badge variant="outline" className="text-xs text-amber-600 border-amber-300 bg-amber-50">
+                <AlertTriangle className="h-3 w-3 mr-1" />
+                Stale
+              </Badge>
+            )}
           </div>
           <div className="flex items-center gap-1">
             <span className="text-xs">AI:</span>
             <Badge variant="outline" className="text-xs capitalize">
               {task.aiVendor}
             </Badge>
+            {showWarnings && vendorWarning && (
+              <Badge variant="outline" className="text-xs text-amber-600 border-amber-300 bg-amber-50">
+                <AlertTriangle className="h-3 w-3" />
+              </Badge>
+            )}
           </div>
         </div>
+
+        {/* Environment Warning */}
+        {showWarnings && environmentWarning && (
+          <div className="flex items-start gap-1 text-xs text-amber-700 bg-amber-50 p-2 rounded">
+            <AlertTriangle className="h-3 w-3 mt-0.5 shrink-0" />
+            <span>{environmentWarning}</span>
+          </div>
+        )}
+
+        {/* Vendor Warning */}
+        {showWarnings && vendorWarning && (
+          <div className="flex items-start gap-1 text-xs text-amber-700 bg-amber-50 p-2 rounded">
+            <AlertTriangle className="h-3 w-3 mt-0.5 shrink-0" />
+            <span>{vendorWarning}</span>
+          </div>
+        )}
 
         {/* Branch Name */}
         {task.branchName && (
