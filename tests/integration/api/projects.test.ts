@@ -61,7 +61,7 @@ describe('Projects CRUD API', () => {
   });
 
   it('should return empty list when no projects exist', async () => {
-    const projects = [];
+    const projects: unknown[] = [];
     
     expect(projects).toHaveLength(0);
   });
@@ -288,7 +288,7 @@ describe('Projects CRUD API', () => {
 
   it('should return empty list when project has no tasks', async () => {
     const projectId = createId();
-    const tasks = [];
+    const tasks: unknown[] = [];
 
     expect(tasks).toHaveLength(0);
   });

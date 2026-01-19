@@ -2,12 +2,13 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { db } from '@/lib/db/client';
 import { tasks, projects } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
+import { GET } from '@/app/api/tasks/route';
+import { NextRequest } from 'next/server';
 
-// Helper to make API request
-async function apiRequest(path: string, options?: RequestInit) {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-  const response = await fetch(`${baseUrl}${path}`, options);
-  return response;
+// Helper to create a mock NextRequest with query parameters
+function createRequest(path: string): NextRequest {
+  const url = `http://localhost:3000${path}`;
+  return new NextRequest(url);
 }
 
 describe('GET /api/tasks', () => {
@@ -84,7 +85,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('returns all tasks by default', async () => {
-    const response = await apiRequest('/api/tasks');
+    const request = createRequest('/api/tasks');
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -96,7 +98,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('filters tasks by project', async () => {
-    const response = await apiRequest(`/api/tasks?projectId=${testProjectId}`);
+    const request = createRequest(`/api/tasks?projectId=${testProjectId}`);
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -107,7 +110,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('filters tasks by status', async () => {
-    const response = await apiRequest('/api/tasks?status=running');
+    const request = createRequest('/api/tasks?status=running');
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -117,7 +121,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('filters tasks by AI vendor', async () => {
-    const response = await apiRequest('/api/tasks?aiVendor=claude');
+    const request = createRequest('/api/tasks?aiVendor=claude');
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -127,7 +132,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('filters tasks by branch name', async () => {
-    const response = await apiRequest('/api/tasks?branchName=feature/test-1');
+    const request = createRequest('/api/tasks?branchName=feature/test-1');
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -138,7 +144,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('supports pagination with limit and offset', async () => {
-    const response = await apiRequest('/api/tasks?limit=2&offset=0');
+    const request = createRequest('/api/tasks?limit=2&offset=0');
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -148,7 +155,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('supports search in task description', async () => {
-    const response = await apiRequest('/api/tasks?search=Pending');
+    const request = createRequest('/api/tasks?search=Pending');
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -158,7 +166,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('supports sorting by createdAt', async () => {
-    const response = await apiRequest('/api/tasks?sortBy=createdAt&sortOrder=asc');
+    const request = createRequest('/api/tasks?sortBy=createdAt&sortOrder=asc');
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -172,7 +181,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('includes project information in response', async () => {
-    const response = await apiRequest(`/api/tasks?projectId=${testProjectId}`);
+    const request = createRequest(`/api/tasks?projectId=${testProjectId}`);
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -183,7 +193,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('returns 400 for invalid query parameters', async () => {
-    const response = await apiRequest('/api/tasks?limit=invalid');
+    const request = createRequest('/api/tasks?limit=invalid');
+    const response = await GET(request);
     expect(response.status).toBe(400);
 
     const data = await response.json();
@@ -191,7 +202,8 @@ describe('GET /api/tasks', () => {
   });
 
   it('handles empty results gracefully', async () => {
-    const response = await apiRequest('/api/tasks?status=paused');
+    const request = createRequest('/api/tasks?status=paused');
+    const response = await GET(request);
     expect(response.status).toBe(200);
 
     const data = await response.json();

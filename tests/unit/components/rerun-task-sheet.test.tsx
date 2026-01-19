@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Test wrapper with React Query provider
@@ -47,7 +46,7 @@ describe('RerunTaskSheet', () => {
       </TestWrapper>
     );
 
-    expect(screen.getByText(/re-run task/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /re-run task/i })).toBeInTheDocument();
   });
 
   it('should pre-fill form with original task data', async () => {
@@ -215,9 +214,9 @@ describe('RerunTaskSheet', () => {
     );
 
     // Environment tabs should be available
-    expect(screen.getByText(/local/i)).toBeInTheDocument();
-    expect(screen.getByText(/worktree/i)).toBeInTheDocument();
-    expect(screen.getByText(/remote/i)).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /local/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /worktree/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /remote/i })).toBeInTheDocument();
   });
 
   it('should close sheet when cancel is clicked', async () => {
@@ -287,7 +286,7 @@ describe('RerunTaskSheet', () => {
 
   it('should disable submit during submission', async () => {
     const { RerunTaskSheet } = await import('@/components/tasks/rerun-task-sheet');
-    const mockOnSubmit = vi.fn(() => new Promise((resolve) => setTimeout(resolve, 100)));
+    const mockOnSubmit = vi.fn((): Promise<void> => new Promise((resolve) => setTimeout(resolve, 100)));
     const mockTask = {
       id: 'task-123',
       description: 'Task',

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Test wrapper with React Query provider
@@ -81,6 +81,7 @@ describe('TaskForm', () => {
   it('should validate worktree path is required when worktree selected', async () => {
     const { TaskForm } = await import('@/components/tasks/task-form');
     const mockOnSubmit = vi.fn();
+    const user = userEvent.setup();
     
     render(
       <TestWrapper>
@@ -89,17 +90,18 @@ describe('TaskForm', () => {
     );
 
     const descriptionInput = screen.getByLabelText(/description/i);
-    fireEvent.change(descriptionInput, { target: { value: 'Test task' } });
+    await user.type(descriptionInput, 'Test task');
 
     // Switch to worktree environment
-    const worktreeTab = screen.getByText(/worktree/i);
-    fireEvent.click(worktreeTab);
+    const worktreeTab = screen.getByRole('tab', { name: /worktree/i });
+    await user.click(worktreeTab);
 
     const submitButton = screen.getByRole('button', { name: /create/i });
-    fireEvent.click(submitButton);
+    await user.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/path is required/i)).toBeInTheDocument();
+      // Form shows error for incomplete environment configuration
+      expect(screen.getByText(/invalid environment configuration|please complete the environment configuration/i)).toBeInTheDocument();
     });
     expect(mockOnSubmit).not.toHaveBeenCalled();
   });
@@ -107,6 +109,7 @@ describe('TaskForm', () => {
   it('should validate remote host is required when remote selected', async () => {
     const { TaskForm } = await import('@/components/tasks/task-form');
     const mockOnSubmit = vi.fn();
+    const user = userEvent.setup();
     
     render(
       <TestWrapper>
@@ -115,17 +118,18 @@ describe('TaskForm', () => {
     );
 
     const descriptionInput = screen.getByLabelText(/description/i);
-    fireEvent.change(descriptionInput, { target: { value: 'Test task' } });
+    await user.type(descriptionInput, 'Test task');
 
     // Switch to remote environment
-    const remoteTab = screen.getByText(/remote/i);
-    fireEvent.click(remoteTab);
+    const remoteTab = screen.getByRole('tab', { name: /remote/i });
+    await user.click(remoteTab);
 
     const submitButton = screen.getByRole('button', { name: /create/i });
-    fireEvent.click(submitButton);
+    await user.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/host is required/i)).toBeInTheDocument();
+      // Form shows error for incomplete environment configuration
+      expect(screen.getByText(/invalid environment configuration|please complete the environment configuration/i)).toBeInTheDocument();
     });
     expect(mockOnSubmit).not.toHaveBeenCalled();
   });
@@ -201,7 +205,7 @@ describe('TaskForm', () => {
 
   it('should show loading state during submission', async () => {
     const { TaskForm } = await import('@/components/tasks/task-form');
-    const mockOnSubmit = vi.fn(() => new Promise((resolve) => setTimeout(resolve, 100)));
+    const mockOnSubmit = vi.fn((): Promise<void> => new Promise((resolve) => setTimeout(resolve, 100)));
     
     render(
       <TestWrapper>

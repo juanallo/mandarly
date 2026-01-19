@@ -54,7 +54,7 @@ describe('Presets CRUD API', () => {
   });
 
   it('should return empty list when no presets exist', async () => {
-    const presets = [];
+    const presets: unknown[] = [];
     expect(presets).toHaveLength(0);
   });
 

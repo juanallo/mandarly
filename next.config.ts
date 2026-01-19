@@ -5,6 +5,8 @@ import withPWA from 'next-pwa';
 const nextConfig: NextConfig = {
   /* config options here */
   turbopack: {}, // Add empty turbopack config to silence error
+  // Support separate build directory for e2e tests (allows running alongside dev server)
+  distDir: process.env.NEXT_DIST_DIR || '.next',
 };
 
 export default withPWA({

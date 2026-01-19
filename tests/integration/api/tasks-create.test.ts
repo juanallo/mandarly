@@ -204,7 +204,7 @@ describe('POST /api/tasks - Create Task API', () => {
   });
 
   it('should reject task with missing description', async () => {
-    const taskData = {
+    const taskData: Record<string, unknown> = {
       // description missing
       environmentType: 'local',
       environmentConfig: { type: 'local' },

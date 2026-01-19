@@ -5,6 +5,6 @@ export default {
   out: './src/lib/db/migrations',
   dialect: 'sqlite',
   dbCredentials: {
-    url: '.data/tracker.db',
+    url: process.env.DATABASE_URL || '.data/tracker.db',
   },
 } satisfies Config;
