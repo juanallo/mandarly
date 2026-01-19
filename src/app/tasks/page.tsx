@@ -87,11 +87,12 @@ export default function TasksPage() {
         </Link>
       </div>
 
-      {/* Task List */}
+      {/* Task List with Kanban Support */}
       <TaskList
         tasks={data?.items || []}
         isLoading={isLoading}
         groupByProject={true}
+        defaultView="kanban"
         onRerun={handleRerun}
       />
 

@@ -2,17 +2,25 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { TaskCard } from './task-card';
+import { KanbanBoard } from './kanban-board';
 import { TaskFilters, type TaskFilterValues } from './task-filters';
 import { Skeleton } from '@/components/ui/skeleton';
 import { EmptyState } from '@/components/layout/empty-state';
+import { Button } from '@/components/ui/button';
+import { LayoutGrid, Columns3 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import type { TaskWithProject } from '@/lib/api/schemas';
+
+type ViewMode = 'grid' | 'kanban';
 
 interface TaskListProps {
   tasks: TaskWithProject[];
   projects?: Array<{ id: string; name: string }>;
   isLoading?: boolean;
   groupByProject?: boolean;
+  defaultView?: ViewMode;
   onRerun?: (task: TaskWithProject) => void;
 }
 
@@ -50,9 +58,12 @@ export function TaskList({
   projects = [], 
   isLoading = false,
   groupByProject = true,
+  defaultView = 'grid',
   onRerun,
 }: TaskListProps) {
+  const router = useRouter();
   const [filters, setFilters] = useState<TaskFilterValues>({});
+  const [viewMode, setViewMode] = useState<ViewMode>(defaultView);
 
   // Apply client-side filtering
   const filteredTasks = tasks.filter((task) => {
@@ -69,10 +80,17 @@ export function TaskList({
 
   const groupedTasks = groupByProject ? groupTasksByProject(filteredTasks) : null;
 
+  const handleTaskClick = (task: TaskWithProject) => {
+    router.push(`/tasks/${task.id}`);
+  };
+
   if (isLoading) {
     return (
       <div className="space-y-6">
-        <TaskFilters filters={filters} onFiltersChange={setFilters} projects={projects} />
+        <div className="flex items-center justify-between">
+          <TaskFilters filters={filters} onFiltersChange={setFilters} projects={projects} />
+          <ViewToggle viewMode={viewMode} onViewModeChange={setViewMode} />
+        </div>
         <div className="grid gap-4">
           {Array.from({ length: 3 }).map((_, i) => (
             <Skeleton key={i} className="h-48 w-full" />
@@ -85,7 +103,10 @@ export function TaskList({
   if (filteredTasks.length === 0) {
     return (
       <div className="space-y-6">
-        <TaskFilters filters={filters} onFiltersChange={setFilters} projects={projects} />
+        <div className="flex items-center justify-between">
+          <TaskFilters filters={filters} onFiltersChange={setFilters} projects={projects} />
+          <ViewToggle viewMode={viewMode} onViewModeChange={setViewMode} />
+        </div>
         <EmptyState
           title="No tasks found"
           description={
@@ -100,9 +121,19 @@ export function TaskList({
 
   return (
     <div className="space-y-6">
-      <TaskFilters filters={filters} onFiltersChange={setFilters} projects={projects} />
+      <div className="flex items-center justify-between">
+        <TaskFilters filters={filters} onFiltersChange={setFilters} projects={projects} />
+        <ViewToggle viewMode={viewMode} onViewModeChange={setViewMode} />
+      </div>
 
-      {groupByProject && groupedTasks ? (
+      {viewMode === 'kanban' ? (
+        <KanbanBoard
+          tasks={filteredTasks}
+          isLoading={isLoading}
+          onTaskClick={handleTaskClick}
+          onRerun={onRerun}
+        />
+      ) : groupByProject && groupedTasks ? (
         <div className="space-y-8">
           {groupedTasks.map((group) => (
             <div key={group.projectId || 'no-project'} className="space-y-4">
@@ -131,6 +162,38 @@ export function TaskList({
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+// View toggle component
+function ViewToggle({
+  viewMode,
+  onViewModeChange,
+}: {
+  viewMode: ViewMode;
+  onViewModeChange: (mode: ViewMode) => void;
+}) {
+  return (
+    <div className="flex items-center gap-2 rounded-lg border p-1">
+      <Button
+        variant={viewMode === 'grid' ? 'secondary' : 'ghost'}
+        size="sm"
+        onClick={() => onViewModeChange('grid')}
+        className="h-8"
+        aria-label="Grid view"
+      >
+        <LayoutGrid className="h-4 w-4" />
+      </Button>
+      <Button
+        variant={viewMode === 'kanban' ? 'secondary' : 'ghost'}
+        size="sm"
+        onClick={() => onViewModeChange('kanban')}
+        className="h-8"
+        aria-label="Kanban view"
+      >
+        <Columns3 className="h-4 w-4" />
+      </Button>
     </div>
   );
 }

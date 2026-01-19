@@ -114,21 +114,21 @@
 
 ### Tests for User Story 1
 
-- [ ] T028 [P] [US1] Write unit test for kanban-column component in tests/unit/components/kanban-column.test.tsx
-- [ ] T029 [P] [US1] Write unit test for kanban-board component in tests/unit/components/kanban-board.test.tsx
-- [ ] T030 [P] [US1] Write integration test for full kanban board in tests/integration/kanban.test.ts
+- [X] T028 [P] [US1] Write unit test for kanban-column component in tests/unit/components/kanban-column.test.tsx
+- [X] T029 [P] [US1] Write unit test for kanban-board component in tests/unit/components/kanban-board.test.tsx
+- [X] T030 [P] [US1] Write integration test for full kanban board in tests/integration/kanban.test.ts
 
 ### Implementation for User Story 1
 
-- [ ] T031 [P] [US1] Create kanban-column component in src/components/tasks/kanban-column.tsx
-- [ ] T032 [US1] Create kanban-board component in src/components/tasks/kanban-board.tsx
-- [ ] T033 [US1] Add column headers with status name, icon, and count badge in src/components/tasks/kanban-column.tsx
-- [ ] T034 [US1] Add horizontal scrolling for column overflow in src/components/tasks/kanban-board.tsx
-- [ ] T035 [US1] Add vertical scrolling within columns for task overflow in src/components/tasks/kanban-column.tsx
-- [ ] T036 [US1] Add empty state message for columns with zero tasks in src/components/tasks/kanban-column.tsx
-- [ ] T037 [US1] Update task-list to support kanban view mode in src/components/tasks/task-list.tsx
-- [ ] T038 [US1] Integrate kanban-board into tasks page in src/app/tasks/page.tsx
-- [ ] T038b [US1] Verify kanban columns scroll horizontally on narrow viewports
+- [X] T031 [P] [US1] Create kanban-column component in src/components/tasks/kanban-column.tsx
+- [X] T032 [US1] Create kanban-board component in src/components/tasks/kanban-board.tsx
+- [X] T033 [US1] Add column headers with status name, icon, and count badge in src/components/tasks/kanban-column.tsx
+- [X] T034 [US1] Add horizontal scrolling for column overflow in src/components/tasks/kanban-board.tsx
+- [X] T035 [US1] Add vertical scrolling within columns for task overflow in src/components/tasks/kanban-column.tsx
+- [X] T036 [US1] Add empty state message for columns with zero tasks in src/components/tasks/kanban-column.tsx
+- [X] T037 [US1] Update task-list to support kanban view mode in src/components/tasks/task-list.tsx
+- [X] T038 [US1] Integrate kanban-board into tasks page in src/app/tasks/page.tsx
+- [X] T038b [US1] Verify kanban columns scroll horizontally on narrow viewports
 
 **Checkpoint**: Kanban board fully functional - tasks visible in status columns
 
