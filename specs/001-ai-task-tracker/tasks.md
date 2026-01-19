@@ -248,12 +248,12 @@
 
 **Purpose**: Achieve SC-006 (90% first-use success without documentation)
 
-- [ ] T109 [P] Enhance EmptyState components with clear CTAs per OB-001 (create first task, create first project)
-- [ ] T110 [P] Add inline help tooltips to EnvironmentSelector explaining local/worktree/remote options (OB-002)
-- [ ] T111 [P] Add inline help tooltips to AIVendorPicker with brief descriptions of each vendor (OB-002)
-- [ ] T112 Create OnboardingTour component in src/components/layout/onboarding-tour.tsx using shadcn Dialog for first-time user guidance (OB-003)
-- [ ] T113 Add localStorage flag to track first-visit and trigger onboarding tour
-- [ ] T114 Add placeholder text with examples to all form inputs (description, worktree path, remote host) per OB-004
+- [X] T109 [P] Enhance EmptyState components with clear CTAs per OB-001 (create first task, create first project)
+- [X] T110 [P] Add inline help tooltips to EnvironmentSelector explaining local/worktree/remote options (OB-002)
+- [X] T111 [P] Add inline help tooltips to AIVendorPicker with brief descriptions of each vendor (OB-002)
+- [X] T112 Create OnboardingTour component in src/components/layout/onboarding-tour.tsx using shadcn Dialog for first-time user guidance (OB-003)
+- [X] T113 Add localStorage flag to track first-visit and trigger onboarding tour
+- [X] T114 Add placeholder text with examples to all form inputs (description, worktree path, remote host) per OB-004
 
 ---
 

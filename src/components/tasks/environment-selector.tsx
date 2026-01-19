@@ -5,6 +5,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { HelpCircle } from 'lucide-react';
 import type { EnvironmentConfig } from '@/types';
 
 interface EnvironmentSelectorProps {
@@ -57,31 +59,51 @@ export function EnvironmentSelector({ value, onChange }: EnvironmentSelectorProp
   };
 
   return (
-    <div className="space-y-4">
-      <Tabs value={activeTab} onValueChange={handleTabChange}>
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="local">Local</TabsTrigger>
-          <TabsTrigger value="worktree">Worktree</TabsTrigger>
-          <TabsTrigger value="remote">Remote</TabsTrigger>
-        </TabsList>
+    <TooltipProvider>
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <Label>Environment*</Label>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button type="button" className="text-muted-foreground hover:text-foreground">
+                <HelpCircle className="h-4 w-4" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent className="max-w-xs">
+              <p className="font-semibold mb-1">Choose where to run your task:</p>
+              <ul className="text-xs space-y-1">
+                <li><strong>Local:</strong> Your current machine and directory</li>
+                <li><strong>Worktree:</strong> A separate git worktree (parallel branch)</li>
+                <li><strong>Remote:</strong> A remote server via SSH</li>
+              </ul>
+            </TooltipContent>
+          </Tooltip>
+        </div>
 
-        <TabsContent value="local" className="space-y-4">
-          <p className="text-sm text-muted-foreground">
-            Execute task on your local machine in the current directory.
-          </p>
-        </TabsContent>
+        <Tabs value={activeTab} onValueChange={handleTabChange}>
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="local">Local</TabsTrigger>
+            <TabsTrigger value="worktree">Worktree</TabsTrigger>
+            <TabsTrigger value="remote">Remote</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="local" className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Execute task on your local machine in the current directory.
+            </p>
+          </TabsContent>
 
         <TabsContent value="worktree" className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="worktree-path">Path*</Label>
             <Input
               id="worktree-path"
-              placeholder="/path/to/worktree"
+              placeholder="e.g., /Users/you/code/myproject-feature"
               value={value.type === 'worktree' ? value.path : ''}
               onChange={(e) => handleWorktreeChange('path', e.target.value)}
             />
             <p className="text-xs text-muted-foreground">
-              Absolute path to your git worktree
+              Absolute path to your git worktree directory
             </p>
           </div>
 
@@ -161,5 +183,6 @@ export function EnvironmentSelector({ value, onChange }: EnvironmentSelectorProp
         </TabsContent>
       </Tabs>
     </div>
+    </TooltipProvider>
   );
 }
