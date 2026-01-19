@@ -1,13 +1,15 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { TaskStatusBadge } from './task-status-badge';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { TaskWithProject } from '@/lib/api/schemas';
-import { Clock, GitBranch, Laptop, Server, FolderGit2, AlertCircle } from 'lucide-react';
+import { Clock, GitBranch, Laptop, Server, FolderGit2, AlertCircle, RotateCcw } from 'lucide-react';
 
 interface TaskCardProps {
   task: TaskWithProject;
   className?: string;
+  onRerun?: (task: TaskWithProject) => void;
 }
 
 function formatDate(date: string | null): string {
@@ -43,7 +45,7 @@ function getEnvironmentIcon(type: string) {
   }
 }
 
-export function TaskCard({ task, className }: TaskCardProps) {
+export function TaskCard({ task, className, onRerun }: TaskCardProps) {
   const duration = task.status === 'running' && task.startedAt
     ? calculateDuration(task.startedAt)
     : null;
@@ -62,7 +64,23 @@ export function TaskCard({ task, className }: TaskCardProps) {
               </p>
             )}
           </div>
-          <TaskStatusBadge status={task.status} />
+          <div className="flex items-center gap-2">
+            <TaskStatusBadge status={task.status} />
+            {onRerun && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onRerun(task);
+                }}
+                className="h-8 w-8 p-0"
+                title="Re-run task"
+              >
+                <RotateCcw className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -99,7 +117,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
         {/* Error Message for Failed Tasks */}
         {task.status === 'failed' && task.errorMessage && (
           <div className="flex items-start gap-1 text-xs text-red-600 bg-red-50 p-2 rounded">
-            <AlertCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
+            <AlertCircle className="h-3 w-3 mt-0.5 shrink-0" />
             <span className="line-clamp-2">{task.errorMessage}</span>
           </div>
         )}

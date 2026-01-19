@@ -127,16 +127,16 @@
 
 ### Tests for User Story 3 (Write FIRST, verify they FAIL)
 
-- [ ] T055 [P] [US3] Integration test for POST /api/tasks/[id]/rerun endpoint in tests/integration/api/tasks-rerun.test.ts
-- [ ] T056 [US3] Unit test for RerunTaskSheet pre-fill logic in tests/unit/components/rerun-task-sheet.test.tsx
+- [X] T055 [P] [US3] Integration test for POST /api/tasks/[id]/rerun endpoint in tests/integration/api/tasks-rerun.test.ts
+- [X] T056 [US3] Unit test for RerunTaskSheet pre-fill logic in tests/unit/components/rerun-task-sheet.test.tsx
 
 ### Implementation for User Story 3
 
-- [ ] T057 [US3] Create RerunTaskSheet component in src/components/tasks/rerun-task-sheet.tsx as slide-over panel with pre-filled TaskForm for modifications
-- [ ] T058 [US3] Create POST /api/tasks/[id]/rerun route handler in src/app/api/tasks/[id]/rerun/route.ts validating RerunTaskRequest, creating new task with parentTaskId set
-- [ ] T059 [US3] Create useRerunTask mutation hook in src/hooks/use-tasks.ts with cache invalidation
-- [ ] T060 [US3] Add "Re-run" button to TaskCard and task detail page that opens RerunTaskSheet
-- [ ] T061 [US3] Display parent task link on task detail page when task is a re-run (parentTaskId exists)
+- [X] T057 [US3] Create RerunTaskSheet component in src/components/tasks/rerun-task-sheet.tsx as slide-over panel with pre-filled TaskForm for modifications
+- [X] T058 [US3] Create POST /api/tasks/[id]/rerun route handler in src/app/api/tasks/[id]/rerun/route.ts validating RerunTaskRequest, creating new task with parentTaskId set
+- [X] T059 [US3] Create useRerunTask mutation hook in src/hooks/use-tasks.ts with cache invalidation
+- [X] T060 [US3] Add "Re-run" button to TaskCard and task detail page that opens RerunTaskSheet
+- [X] T061 [US3] Display parent task link on task detail page when task is a re-run (parentTaskId exists)
 
 **Checkpoint**: User Story 3 complete - can re-run any task with modifications
 

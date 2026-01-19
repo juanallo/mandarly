@@ -1,14 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTask } from '@/hooks/use-tasks';
+import { useTask, useRerunTask } from '@/hooks/use-tasks';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Calendar, Clock, GitBranch, Laptop } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, GitBranch, Laptop, RotateCcw, Link as LinkIcon } from 'lucide-react';
 import Link from 'next/link';
 import { TaskStatusBadge } from '@/components/tasks/task-status-badge';
+import { RerunTaskSheet } from '@/components/tasks/rerun-task-sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Separator } from '@/components/ui/separator';
+import { useToast } from '@/hooks/use-toast';
 
 export default function TaskDetailPage() {
   const params = useParams();
@@ -16,6 +19,32 @@ export default function TaskDetailPage() {
   const taskId = params.id as string;
   
   const { data: task, isLoading, error } = useTask(taskId);
+  const rerunTask = useRerunTask();
+  const { toast } = useToast();
+  const [isRerunSheetOpen, setIsRerunSheetOpen] = useState(false);
+
+  const handleRerun = async (data: any) => {
+    try {
+      const result = await rerunTask.mutateAsync({
+        taskId: task!.id,
+        modifications: data,
+      });
+      
+      toast({
+        title: 'Task re-run',
+        description: 'A new task has been created.',
+      });
+
+      // Navigate to the new task
+      router.push(`/tasks/${result.id}`);
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: error instanceof Error ? error.message : 'Failed to re-run task',
+        variant: 'destructive',
+      });
+    }
+  };
 
   if (isLoading) {
     return (
@@ -72,7 +101,31 @@ export default function TaskDetailPage() {
           </div>
           <p className="text-sm text-muted-foreground">ID: {task.id}</p>
         </div>
+        <Button onClick={() => setIsRerunSheetOpen(true)} className="gap-2">
+          <RotateCcw className="h-4 w-4" />
+          Re-run Task
+        </Button>
       </div>
+
+      {/* Parent Task Reference */}
+      {task.parentTaskId && (
+        <Card className="border-blue-200 bg-blue-50">
+          <CardContent className="pt-4">
+            <div className="flex items-center gap-2 text-sm">
+              <LinkIcon className="h-4 w-4 text-blue-600" />
+              <span className="text-blue-900">
+                This is a re-run of task:{' '}
+                <Link
+                  href={`/tasks/${task.parentTaskId}`}
+                  className="font-medium underline hover:no-underline"
+                >
+                  {task.parentTaskId}
+                </Link>
+              </span>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Task Information */}
       <Card>
@@ -231,6 +284,14 @@ export default function TaskDetailPage() {
           )}
         </CardContent>
       </Card>
+
+      {/* Rerun Sheet */}
+      <RerunTaskSheet
+        task={task}
+        open={isRerunSheetOpen}
+        onOpenChange={setIsRerunSheetOpen}
+        onSubmit={handleRerun}
+      />
     </div>
   );
 }

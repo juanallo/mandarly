@@ -89,4 +89,36 @@ export function useTask(id: string) {
   });
 }
 
+// Rerun task
+async function rerunTask(taskId: string, modifications?: any): Promise<TaskWithProject> {
+  const response = await fetch(`/api/tasks/${taskId}/rerun`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ modifications }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error?.message || 'Failed to rerun task');
+  }
+
+  return response.json();
+}
+
+export function useRerunTask() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ taskId, modifications }: { taskId: string; modifications?: any }) =>
+      rerunTask(taskId, modifications),
+    onSuccess: () => {
+      // Invalidate tasks list and dashboard
+      queryClient.invalidateQueries({ queryKey: taskKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
+    },
+  });
+}
+
 // Additional hooks will be added as we implement more features

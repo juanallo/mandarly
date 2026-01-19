@@ -12,6 +12,7 @@ interface TaskListProps {
   projects?: Array<{ id: string; name: string }>;
   isLoading?: boolean;
   groupByProject?: boolean;
+  onRerun?: (task: TaskWithProject) => void;
 }
 
 interface GroupedTasks {
@@ -48,6 +49,7 @@ export function TaskList({
   projects = [], 
   isLoading = false,
   groupByProject = true,
+  onRerun,
 }: TaskListProps) {
   const [filters, setFilters] = useState<TaskFilterValues>({});
 
@@ -111,7 +113,7 @@ export function TaskList({
               </h3>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {group.tasks.map((task) => (
-                  <TaskCard key={task.id} task={task} />
+                  <TaskCard key={task.id} task={task} onRerun={onRerun} />
                 ))}
               </div>
             </div>
@@ -120,7 +122,7 @@ export function TaskList({
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filteredTasks.map((task) => (
-            <TaskCard key={task.id} task={task} />
+            <TaskCard key={task.id} task={task} onRerun={onRerun} />
           ))}
         </div>
       )}

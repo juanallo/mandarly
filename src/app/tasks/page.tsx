@@ -1,14 +1,52 @@
 'use client';
 
-import { useTasks } from '@/hooks/use-tasks';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useTasks, useRerunTask } from '@/hooks/use-tasks';
 import { TaskList } from '@/components/tasks/task-list';
+import { RerunTaskSheet } from '@/components/tasks/rerun-task-sheet';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import type { TaskWithProject } from '@/lib/api/schemas';
 
 export default function TasksPage() {
   const { data, isLoading, error } = useTasks();
+  const rerunTask = useRerunTask();
+  const router = useRouter();
+  const { toast } = useToast();
+  const [rerunTaskData, setRerunTaskData] = useState<TaskWithProject | null>(null);
+
+  const handleRerun = (task: TaskWithProject) => {
+    setRerunTaskData(task);
+  };
+
+  const handleRerunSubmit = async (data: any) => {
+    if (!rerunTaskData) return;
+
+    try {
+      const result = await rerunTask.mutateAsync({
+        taskId: rerunTaskData.id,
+        modifications: data,
+      });
+      
+      toast({
+        title: 'Task re-run',
+        description: 'A new task has been created.',
+      });
+
+      setRerunTaskData(null);
+      router.push(`/tasks/${result.id}`);
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: error instanceof Error ? error.message : 'Failed to re-run task',
+        variant: 'destructive',
+      });
+    }
+  };
 
   if (error) {
     return (
@@ -54,6 +92,7 @@ export default function TasksPage() {
         tasks={data?.items || []}
         isLoading={isLoading}
         groupByProject={true}
+        onRerun={handleRerun}
       />
 
       {/* Pagination info */}
@@ -61,6 +100,16 @@ export default function TasksPage() {
         <div className="text-sm text-muted-foreground text-center">
           Showing {data.items.length} of {data.total} tasks
         </div>
+      )}
+
+      {/* Rerun Sheet */}
+      {rerunTaskData && (
+        <RerunTaskSheet
+          task={rerunTaskData}
+          open={!!rerunTaskData}
+          onOpenChange={(open) => !open && setRerunTaskData(null)}
+          onSubmit={handleRerunSubmit}
+        />
       )}
     </div>
   );
