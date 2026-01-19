@@ -178,22 +178,22 @@
 
 ### Tests for User Story 5 (Write FIRST, verify they FAIL)
 
-- [ ] T074 [P] [US5] Integration test for projects CRUD API in tests/integration/api/projects.test.ts
-- [ ] T075 [US5] Integration test for project delete with running tasks rejection in tests/integration/api/projects-delete.test.ts
+- [X] T074 [P] [US5] Integration test for projects CRUD API in tests/integration/api/projects.test.ts
+- [X] T075 [US5] Integration test for project delete with running tasks rejection in tests/integration/api/projects-delete.test.ts
 
 ### Implementation for User Story 5
 
-- [ ] T076 [US5] Create ProjectCard component in src/components/projects/project-card.tsx showing name, description, task count, active task count
-- [ ] T077 [P] [US5] Create ProjectForm component in src/components/projects/project-form.tsx with name and description fields using react-hook-form
-- [ ] T078 [US5] Create GET /api/projects route handler in src/app/api/projects/route.ts returning projects with task counts per ProjectListResponse
-- [ ] T079 [US5] Create POST /api/projects route handler in src/app/api/projects/route.ts validating CreateProjectRequest
-- [ ] T080 [US5] Create GET /api/projects/[id] route handler in src/app/api/projects/[id]/route.ts returning project with task counts
-- [ ] T081 [US5] Create PATCH /api/projects/[id] route handler in src/app/api/projects/[id]/route.ts validating UpdateProjectRequest
-- [ ] T082 [US5] Create DELETE /api/projects/[id] route handler in src/app/api/projects/[id]/route.ts (sets tasks' projectId to null, prevents delete if running tasks exist)
-- [ ] T083 [US5] Create useProjects hook in src/hooks/use-projects.ts with list, create, update, delete mutations
-- [ ] T084 [US5] Create Projects list page in src/app/projects/page.tsx with ProjectCard grid and create dialog
-- [ ] T085 [US5] Create GET /api/projects/[id]/tasks route handler in src/app/api/projects/[id]/tasks/route.ts returning paginated tasks for project
-- [ ] T086 [US5] Create Project detail page in src/app/projects/[id]/page.tsx showing project info and task list filtered to project
+- [X] T076 [US5] Create ProjectCard component in src/components/projects/project-card.tsx showing name, description, task count, active task count
+- [X] T077 [P] [US5] Create ProjectForm component in src/components/projects/project-form.tsx with name and description fields using react-hook-form
+- [X] T078 [US5] Create GET /api/projects route handler in src/app/api/projects/route.ts returning projects with task counts per ProjectListResponse
+- [X] T079 [US5] Create POST /api/projects route handler in src/app/api/projects/route.ts validating CreateProjectRequest
+- [X] T080 [US5] Create GET /api/projects/[id] route handler in src/app/api/projects/[id]/route.ts returning project with task counts
+- [X] T081 [US5] Create PATCH /api/projects/[id] route handler in src/app/api/projects/[id]/route.ts validating UpdateProjectRequest
+- [X] T082 [US5] Create DELETE /api/projects/[id] route handler in src/app/api/projects/[id]/route.ts (sets tasks' projectId to null, prevents delete if running tasks exist)
+- [X] T083 [US5] Create useProjects hook in src/hooks/use-projects.ts with list, create, update, delete mutations
+- [X] T084 [US5] Create Projects list page in src/app/projects/page.tsx with ProjectCard grid and create dialog
+- [X] T085 [US5] Create GET /api/projects/[id]/tasks route handler in src/app/api/projects/[id]/tasks/route.ts returning paginated tasks for project
+- [X] T086 [US5] Create Project detail page in src/app/projects/[id]/page.tsx showing project info and task list filtered to project
 
 **Checkpoint**: User Story 5 complete - can create, edit, delete projects and organize tasks
 
