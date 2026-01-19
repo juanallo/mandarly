@@ -60,20 +60,20 @@
 
 ### Tests for User Story 2
 
-- [ ] T008 [P] [US2] Write unit test for sidebar collapse/expand behavior in tests/unit/components/sidebar.test.tsx
-- [ ] T009 [P] [US2] Write unit test for sidebar-toggle button in tests/unit/components/sidebar-toggle.test.tsx
+- [X] T008 [P] [US2] Write unit test for sidebar collapse/expand behavior in tests/unit/components/sidebar.test.tsx
+- [X] T009 [P] [US2] Write unit test for sidebar-toggle button in tests/unit/components/sidebar-toggle.test.tsx
 
 ### Implementation for User Story 2
 
-- [ ] T010 [P] [US2] Create sidebar-toggle component in src/components/layout/sidebar-toggle.tsx
-- [ ] T011 [P] [US2] Create user-nav component for bottom profile section in src/components/layout/user-nav.tsx
-- [ ] T012 [US2] Enhance sidebar with collapse functionality in src/components/layout/sidebar.tsx
-- [ ] T013 [US2] Add workspace branding section at top of sidebar in src/components/layout/sidebar.tsx
-- [ ] T014 [US2] Add grouped navigation sections (Main, Settings) in src/components/layout/sidebar.tsx
-- [ ] T015 [US2] Add user profile section at bottom using user-nav in src/components/layout/sidebar.tsx
-- [ ] T016 [US2] Add tooltip on hover for collapsed sidebar items in src/components/layout/sidebar.tsx
-- [ ] T017 [US2] Add smooth CSS transition animation (200ms) for collapse in src/components/layout/sidebar.tsx
-- [ ] T017b [US2] Verify sidebar renders correctly at tablet breakpoint (768px)
+- [X] T010 [P] [US2] Create sidebar-toggle component in src/components/layout/sidebar-toggle.tsx
+- [X] T011 [P] [US2] Create user-nav component for bottom profile section in src/components/layout/user-nav.tsx
+- [X] T012 [US2] Enhance sidebar with collapse functionality in src/components/layout/sidebar.tsx
+- [X] T013 [US2] Add workspace branding section at top of sidebar in src/components/layout/sidebar.tsx
+- [X] T014 [US2] Add grouped navigation sections (Main, Settings) in src/components/layout/sidebar.tsx
+- [X] T015 [US2] Add user profile section at bottom using user-nav in src/components/layout/sidebar.tsx
+- [X] T016 [US2] Add tooltip on hover for collapsed sidebar items in src/components/layout/sidebar.tsx
+- [X] T017 [US2] Add smooth CSS transition animation (200ms) for collapse in src/components/layout/sidebar.tsx
+- [X] T017b [US2] Verify sidebar renders correctly at tablet breakpoint (768px)
 
 **Checkpoint**: Sidebar fully functional - collapsible with branding, sections, and profile
 
