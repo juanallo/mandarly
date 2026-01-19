@@ -34,7 +34,7 @@ export function KanbanColumn({
       )}
     >
       {/* Column Header */}
-      <div className={cn('flex items-center justify-between p-4', status.bgColor)}>
+      <div className={cn('flex items-center justify-between border-b-2 p-4', status.bgColor, status.borderColor)}>
         <div className="flex items-center gap-2">
           <IconComponent className={cn('h-5 w-5', status.color)} />
           <h3 className={cn('font-semibold', status.color)}>{status.label}</h3>
