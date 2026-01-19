@@ -150,21 +150,21 @@
 
 ### Tests for User Story 4 (Write FIRST, verify they FAIL)
 
-- [ ] T062 [P] [US4] Unit test for status state machine transitions in tests/unit/lib/status-transitions.test.ts
-- [ ] T063 [P] [US4] Integration test for PATCH /api/tasks/[id] status updates in tests/integration/api/tasks-update.test.ts
-- [ ] T064 [US4] Unit test for TaskStatusActions valid transition display in tests/unit/components/task-status-actions.test.tsx
+- [X] T062 [P] [US4] Unit test for status state machine transitions in tests/unit/lib/status-transitions.test.ts
+- [X] T063 [P] [US4] Integration test for PATCH /api/tasks/[id] status updates in tests/integration/api/tasks-update.test.ts
+- [X] T064 [US4] Unit test for TaskStatusActions valid transition display in tests/unit/components/task-status-actions.test.tsx
 
 ### Implementation for User Story 4
 
-- [ ] T065 [US4] Create status transition validator in src/lib/status-transitions.ts enforcing valid state machine paths
-- [ ] T066 [US4] Create PATCH /api/tasks/[id] route handler in src/app/api/tasks/[id]/route.ts validating UpdateTaskRequest, validating transition, updating status, creating StatusHistory entry
-- [ ] T067 [US4] Create useUpdateTask mutation hook in src/hooks/use-tasks.ts with optimistic status update
-- [ ] T068 [US4] Create TaskStatusActions component in src/components/tasks/task-status-actions.tsx with Start, Complete, Fail, Pause buttons based on current status and valid transitions
-- [ ] T069 [US4] Create GET /api/tasks/[id]/history route handler in src/app/api/tasks/[id]/history/route.ts returning StatusHistory entries ordered by timestamp
-- [ ] T070 [US4] Create useTaskHistory hook in src/hooks/use-tasks.ts for fetching status history
-- [ ] T071 [US4] Create StatusHistoryTimeline component in src/components/tasks/status-history-timeline.tsx displaying status changes with timestamps and messages
-- [ ] T072 [US4] Add TaskStatusActions and StatusHistoryTimeline to task detail page in src/app/tasks/[id]/page.tsx
-- [ ] T073 [US4] Update TaskCard to show duration for running tasks (time since startedAt)
+- [X] T065 [US4] Create status transition validator in src/lib/status-transitions.ts enforcing valid state machine paths
+- [X] T066 [US4] Create PATCH /api/tasks/[id] route handler in src/app/api/tasks/[id]/route.ts validating UpdateTaskRequest, validating transition, updating status, creating StatusHistory entry
+- [X] T067 [US4] Create useUpdateTask mutation hook in src/hooks/use-tasks.ts with optimistic status update
+- [X] T068 [US4] Create TaskStatusActions component in src/components/tasks/task-status-actions.tsx with Start, Complete, Fail, Pause buttons based on current status and valid transitions
+- [X] T069 [US4] Create GET /api/tasks/[id]/history route handler in src/app/api/tasks/[id]/history/route.ts returning StatusHistory entries ordered by timestamp
+- [X] T070 [US4] Create useTaskHistory hook in src/hooks/use-tasks.ts for fetching status history
+- [X] T071 [US4] Create StatusHistoryTimeline component in src/components/tasks/status-history-timeline.tsx displaying status changes with timestamps and messages
+- [X] T072 [US4] Add TaskStatusActions and StatusHistoryTimeline to task detail page in src/app/tasks/[id]/page.tsx
+- [X] T073 [US4] Update TaskCard to show duration for running tasks (time since startedAt)
 
 **Checkpoint**: User Story 4 complete - can track and view status changes with full history
 

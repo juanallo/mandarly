@@ -2,16 +2,19 @@
 
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTask, useRerunTask } from '@/hooks/use-tasks';
+import { useTask, useRerunTask, useUpdateTask, useTaskHistory } from '@/hooks/use-tasks';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Calendar, Clock, GitBranch, Laptop, RotateCcw, Link as LinkIcon } from 'lucide-react';
 import Link from 'next/link';
 import { TaskStatusBadge } from '@/components/tasks/task-status-badge';
+import { TaskStatusActions } from '@/components/tasks/task-status-actions';
+import { StatusHistoryTimeline } from '@/components/tasks/status-history-timeline';
 import { RerunTaskSheet } from '@/components/tasks/rerun-task-sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import type { TaskStatus } from '@/types';
 
 export default function TaskDetailPage() {
   const params = useParams();
@@ -19,7 +22,9 @@ export default function TaskDetailPage() {
   const taskId = params.id as string;
   
   const { data: task, isLoading, error } = useTask(taskId);
+  const { data: history, isLoading: isHistoryLoading } = useTaskHistory(taskId);
   const rerunTask = useRerunTask();
+  const updateTask = useUpdateTask();
   const { toast } = useToast();
   const [isRerunSheetOpen, setIsRerunSheetOpen] = useState(false);
 
@@ -41,6 +46,28 @@ export default function TaskDetailPage() {
       toast({
         title: 'Error',
         description: error instanceof Error ? error.message : 'Failed to re-run task',
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleStatusChange = async (newStatus: TaskStatus) => {
+    if (!task) return;
+
+    try {
+      await updateTask.mutateAsync({
+        id: task.id,
+        data: { status: newStatus },
+      });
+      
+      toast({
+        title: 'Status updated',
+        description: `Task status changed to ${newStatus}`,
+      });
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: error instanceof Error ? error.message : 'Failed to update task status',
         variant: 'destructive',
       });
     }
@@ -282,6 +309,35 @@ export default function TaskDetailPage() {
               </div>
             </>
           )}
+        </CardContent>
+      </Card>
+
+      {/* Status Actions */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Actions</CardTitle>
+          <CardDescription>Update task status</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <TaskStatusActions
+            currentStatus={task.status}
+            onStatusChange={handleStatusChange}
+            isLoading={updateTask.isPending}
+          />
+        </CardContent>
+      </Card>
+
+      {/* Status History */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Status History</CardTitle>
+          <CardDescription>Timeline of status changes</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <StatusHistoryTimeline
+            history={history || []}
+            isLoading={isHistoryLoading}
+          />
         </CardContent>
       </Card>
 

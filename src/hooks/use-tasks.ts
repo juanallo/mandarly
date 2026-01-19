@@ -6,6 +6,7 @@ import type {
   CreateTaskRequest,
   ListTasksQuery,
   TaskListResponse,
+  StatusHistory,
 } from '@/lib/api/schemas';
 
 // API client functions
@@ -118,6 +119,57 @@ export function useRerunTask() {
       queryClient.invalidateQueries({ queryKey: taskKeys.lists() });
       queryClient.invalidateQueries({ queryKey: ['dashboard'] });
     },
+  });
+}
+
+// Update task
+async function updateTask(id: string, data: any): Promise<TaskWithProject> {
+  const response = await fetch(`/api/tasks/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error?.message || 'Failed to update task');
+  }
+
+  return response.json();
+}
+
+export function useUpdateTask() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id, data }: { id: string; data: any }) => updateTask(id, data),
+    onSuccess: (updatedTask) => {
+      // Update the specific task in cache
+      queryClient.setQueryData(taskKeys.detail(updatedTask.id), updatedTask);
+      
+      // Invalidate lists to refresh
+      queryClient.invalidateQueries({ queryKey: taskKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
+    },
+  });
+}
+
+// Fetch task status history
+async function fetchTaskHistory(id: string): Promise<StatusHistory[]> {
+  const response = await fetch(`/api/tasks/${id}/history`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch task history');
+  }
+  return response.json();
+}
+
+export function useTaskHistory(id: string) {
+  return useQuery({
+    queryKey: [...taskKeys.detail(id), 'history'],
+    queryFn: () => fetchTaskHistory(id),
+    staleTime: 30000, // 30 seconds
   });
 }
 
