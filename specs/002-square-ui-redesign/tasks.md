@@ -142,18 +142,18 @@
 
 ### Tests for User Story 5
 
-- [ ] T039 [P] [US5] Write unit test for task-status-badge colors in tests/unit/components/task-status-badge.test.tsx
-- [ ] T040 [P] [US5] Write unit test for enhanced task-card in tests/unit/components/task-card.test.tsx
+- [X] T039 [P] [US5] Write unit test for task-status-badge colors in tests/unit/components/task-status-badge.test.tsx
+- [X] T040 [P] [US5] Write unit test for enhanced task-card in tests/unit/components/task-card.test.tsx
 
 ### Implementation for User Story 5
 
-- [ ] T041 [US5] Update task-status-badge with new color scheme in src/components/tasks/task-status-badge.tsx
-- [ ] T042 [US5] Add status icons (Play, Pause, Check, X, Circle) to badges in src/components/tasks/task-status-badge.tsx
-- [ ] T043 [US5] Enhance task-card layout with improved spacing in src/components/tasks/task-card.tsx
-- [ ] T044 [US5] Add project name as tag/badge on task-card in src/components/tasks/task-card.tsx
-- [ ] T045 [US5] Add environment type icon to task-card in src/components/tasks/task-card.tsx
-- [ ] T046 [US5] Add AI vendor badge styling to task-card in src/components/tasks/task-card.tsx
-- [ ] T047 [US5] Add subtle shadow and hover effect to task-card in src/components/tasks/task-card.tsx
+- [X] T041 [US5] Update task-status-badge with new color scheme in src/components/tasks/task-status-badge.tsx
+- [X] T042 [US5] Add status icons (Play, Pause, Check, X, Circle) to badges in src/components/tasks/task-status-badge.tsx
+- [X] T043 [US5] Enhance task-card layout with improved spacing in src/components/tasks/task-card.tsx
+- [X] T044 [US5] Add project name as tag/badge on task-card in src/components/tasks/task-card.tsx
+- [X] T045 [US5] Add environment type icon to task-card in src/components/tasks/task-card.tsx
+- [X] T046 [US5] Add AI vendor badge styling to task-card in src/components/tasks/task-card.tsx
+- [X] T047 [US5] Add subtle shadow and hover effect to task-card in src/components/tasks/task-card.tsx
 
 **Checkpoint**: Task cards visually enhanced with all badges and icons
 

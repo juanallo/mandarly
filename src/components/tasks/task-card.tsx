@@ -64,79 +64,90 @@ export function TaskCard({ task, className, onRerun }: TaskCardProps) {
 
   return (
     <Card 
-      className={cn('hover:shadow-md transition-shadow cursor-pointer', className)} 
+      className={cn(
+        'relative overflow-hidden transition-all duration-200',
+        'hover:shadow-md hover:-translate-y-0.5',
+        'border border-gray-200',
+        className
+      )} 
       role="article"
     >
       <CardHeader className="pb-3">
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex-1 space-y-1">
-            <p className="text-sm font-medium leading-none line-clamp-2">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 space-y-2">
+            {/* Status Badge */}
+            <TaskStatusBadge status={task.status} showIcon={true} />
+            
+            {/* Task Description */}
+            <p className="text-sm font-medium leading-tight line-clamp-2 text-gray-900">
               {task.description}
             </p>
+            
+            {/* Project Tag */}
             {task.project && (
-              <p className="text-xs text-muted-foreground">
+              <Badge variant="secondary" className="text-xs font-normal">
                 {task.project.name}
-              </p>
+              </Badge>
             )}
           </div>
-          <div className="flex items-center gap-2">
-            <TaskStatusBadge status={task.status} />
-            {onRerun && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onRerun(task);
-                }}
-                className="h-8 w-8 p-0"
-                title="Re-run task"
-              >
-                <RotateCcw className="h-4 w-4" />
-              </Button>
-            )}
-          </div>
+          
+          {onRerun && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={(e) => {
+                e.stopPropagation();
+                onRerun(task);
+              }}
+              className="h-8 w-8 p-0 flex-shrink-0"
+              title="Re-run task"
+            >
+              <RotateCcw className="h-4 w-4" />
+            </Button>
+          )}
         </div>
       </CardHeader>
-      <CardContent className="space-y-3">
-        {/* Environment and AI Vendor */}
-        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1">
+      <CardContent className="space-y-3 pt-0">
+        {/* Environment, AI Vendor, and Branch */}
+        <div className="flex items-center flex-wrap gap-2">
+          {/* Environment Icon + Type */}
+          <div className="flex items-center gap-1.5 text-xs text-gray-600">
             {getEnvironmentIcon(task.environmentType)}
-            <span className="capitalize">{task.environmentType}</span>
-            {showWarnings && environmentWarning && (
-              <Badge variant="outline" className="text-xs text-amber-600 border-amber-300 bg-amber-50">
-                <AlertTriangle className="h-3 w-3 mr-1" />
-                Stale
-              </Badge>
-            )}
+            <span className="capitalize font-medium">{task.environmentType}</span>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="text-xs">AI:</span>
-            <Badge variant="outline" className="text-xs capitalize">
-              {task.aiVendor}
+          
+          {/* AI Vendor Badge with enhanced styling */}
+          <Badge 
+            variant="outline" 
+            className="text-xs font-medium bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100"
+          >
+            {task.aiVendor.toUpperCase()}
+          </Badge>
+          
+          {/* Branch Badge if present */}
+          {task.branchName && (
+            <Badge variant="outline" className="text-xs gap-1">
+              <GitBranch className="h-3 w-3" />
+              {task.branchName}
             </Badge>
-            {showWarnings && vendorWarning && (
-              <Badge variant="outline" className="text-xs text-amber-600 border-amber-300 bg-amber-50">
-                <AlertTriangle className="h-3 w-3" />
-              </Badge>
-            )}
-          </div>
+          )}
         </div>
 
-        {/* Environment Warning */}
-        {showWarnings && environmentWarning && (
-          <div className="flex items-start gap-1 text-xs text-amber-700 bg-amber-50 p-2 rounded">
-            <AlertTriangle className="h-3 w-3 mt-0.5 shrink-0" />
-            <span>{environmentWarning}</span>
-          </div>
-        )}
-
-        {/* Vendor Warning */}
-        {showWarnings && vendorWarning && (
-          <div className="flex items-start gap-1 text-xs text-amber-700 bg-amber-50 p-2 rounded">
-            <AlertTriangle className="h-3 w-3 mt-0.5 shrink-0" />
-            <span>{vendorWarning}</span>
+        {/* Warnings */}
+        {showWarnings && (environmentWarning || vendorWarning) && (
+          <div className="space-y-2">
+            {environmentWarning && (
+              <div className="flex items-start gap-1.5 text-xs text-amber-700 bg-amber-50 px-2 py-1.5 rounded border border-amber-200">
+                <AlertTriangle className="h-3 w-3 mt-0.5 shrink-0" />
+                <span>{environmentWarning}</span>
+              </div>
+            )}
+            {vendorWarning && (
+              <div className="flex items-start gap-1.5 text-xs text-amber-700 bg-amber-50 px-2 py-1.5 rounded border border-amber-200">
+                <AlertTriangle className="h-3 w-3 mt-0.5 shrink-0" />
+                <span>{vendorWarning}</span>
+              </div>
+            )}
           </div>
         )}
 
