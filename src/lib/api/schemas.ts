@@ -293,6 +293,15 @@ export type ErrorResponse = z.infer<typeof ErrorResponse>;
  *   GET    /api/dashboard      - Get dashboard stats (active tasks, recent, etc.)
  */
 
+// Trend data for stats cards
+export const TrendData = z.object({
+  current: z.number(),
+  previous: z.number(),
+  change: z.number(),
+  direction: z.enum(['up', 'down', 'stable']),
+});
+export type TrendData = z.infer<typeof TrendData>;
+
 export const DashboardStats = z.object({
   totalTasks: z.number().int().nonnegative(),
   activeTasks: z.number().int().nonnegative(),
@@ -301,5 +310,11 @@ export const DashboardStats = z.object({
   recentTasks: z.array(TaskWithProject),
   tasksByStatus: z.record(TaskStatus, z.number().int().nonnegative()),
   tasksByEnvironment: z.record(EnvironmentType, z.number().int().nonnegative()),
+  trends: z.object({
+    totalTasks: TrendData,
+    activeTasks: TrendData,
+    completedToday: TrendData,
+    failedToday: TrendData,
+  }).optional(),
 });
 export type DashboardStats = z.infer<typeof DashboardStats>;

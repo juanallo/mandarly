@@ -167,17 +167,17 @@
 
 ### Tests for User Story 4
 
-- [ ] T048 [P] [US4] Write unit test for stats-card trend calculation in tests/unit/components/stats-card.test.tsx
+- [X] T048 [P] [US4] Write unit test for stats-card trend calculation in tests/unit/components/stats-card.test.tsx
 
 ### Implementation for User Story 4
 
-- [ ] T049 [US4] Create stats-card component in src/components/dashboard/stats-card.tsx
-- [ ] T050 [US4] Add trend indicator (up/down arrow with color) to stats-card in src/components/dashboard/stats-card.tsx
-- [ ] T051 [US4] Add comparison text (vs last week) to stats-card in src/components/dashboard/stats-card.tsx
-- [ ] T052 [US4] Add skeleton loading state to stats-card in src/components/dashboard/stats-card.tsx
-- [ ] T053 [US4] Update dashboard API to include trend data in src/app/api/dashboard/route.ts
-- [ ] T054 [US4] Update dashboard page to use stats-card component in src/app/page.tsx
-- [ ] T055 [US4] Style stats cards row with responsive grid layout in src/app/page.tsx
+- [X] T049 [US4] Create stats-card component in src/components/dashboard/stats-card.tsx
+- [X] T050 [US4] Add trend indicator (up/down arrow with color) to stats-card in src/components/dashboard/stats-card.tsx
+- [X] T051 [US4] Add comparison text (vs last week) to stats-card in src/components/dashboard/stats-card.tsx
+- [X] T052 [US4] Add skeleton loading state to stats-card in src/components/dashboard/stats-card.tsx
+- [X] T053 [US4] Update dashboard API to include trend data in src/app/api/dashboard/route.ts
+- [X] T054 [US4] Update dashboard page to use stats-card component in src/app/page.tsx
+- [X] T055 [US4] Style stats cards row with responsive grid layout in src/app/page.tsx
 
 **Checkpoint**: Dashboard shows stats with trend indicators
 
