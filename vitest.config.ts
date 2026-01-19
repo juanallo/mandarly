@@ -13,6 +13,14 @@ export default defineConfig({
     env: {
       DATABASE_URL: '.data/vitest.db',
     },
+    // Run tests in single fork to prevent multiple SQLite connections
+    // This ensures the global teardown can close the same connection used by tests
+    pool: 'forks',
+    poolOptions: {
+      forks: {
+        singleFork: true,
+      },
+    },
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

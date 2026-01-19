@@ -39,3 +39,20 @@ export async function setup() {
   });
   console.log('Vitest database ready at:', TEST_DB_PATH);
 }
+
+/**
+ * Vitest global teardown - runs once after all tests
+ * Closes the database connection to prevent process hangs
+ */
+export async function teardown() {
+  try {
+    // Dynamically import to get the sqlite instance that was created during tests
+    const { sqlite } = await import('../src/lib/db/client');
+    
+    if (sqlite && typeof sqlite.close === 'function') {
+      sqlite.close();
+    }
+  } catch {
+    // Module not loaded, nothing to close
+  }
+}
