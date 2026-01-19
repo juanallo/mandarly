@@ -88,7 +88,6 @@ export function PresetForm({
 
       {/* Environment Configuration */}
       <div className="space-y-2">
-        <Label>Environment*</Label>
         <EnvironmentSelector
           value={environmentConfig}
           onChange={(config) => {

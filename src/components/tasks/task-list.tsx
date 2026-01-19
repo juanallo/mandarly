@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { TaskCard } from './task-card';
 import { TaskFilters, type TaskFilterValues } from './task-filters';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -113,7 +114,9 @@ export function TaskList({
               </h3>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {group.tasks.map((task) => (
-                  <TaskCard key={task.id} task={task} onRerun={onRerun} />
+                  <Link key={task.id} href={`/tasks/${task.id}`}>
+                    <TaskCard task={task} onRerun={onRerun} />
+                  </Link>
                 ))}
               </div>
             </div>
@@ -122,7 +125,9 @@ export function TaskList({
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filteredTasks.map((task) => (
-            <TaskCard key={task.id} task={task} onRerun={onRerun} />
+            <Link key={task.id} href={`/tasks/${task.id}`}>
+              <TaskCard task={task} onRerun={onRerun} />
+            </Link>
           ))}
         </div>
       )}

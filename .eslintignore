@@ -23,9 +23,6 @@ coverage/
 *.tsbuildinfo
 next-env.d.ts
 
-# Drizzle migrations (auto-generated)
-src/lib/db/migrations/
-
 # IDE
 .vscode/
 .idea/

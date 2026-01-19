@@ -2,7 +2,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { FolderKanban, Edit, Trash2 } from 'lucide-react';
-import Link from 'next/link';
 import type { ProjectWithTaskCount } from '@/lib/api/schemas';
 
 interface ProjectCardProps {
@@ -21,11 +20,9 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
               <FolderKanban className="h-5 w-5 text-primary" />
             </div>
             <div className="flex-1 min-w-0">
-              <Link href={`/projects/${project.id}`}>
-                <CardTitle className="text-lg hover:underline cursor-pointer line-clamp-1">
-                  {project.name}
-                </CardTitle>
-              </Link>
+              <CardTitle className="text-lg line-clamp-1">
+                {project.name}
+              </CardTitle>
               {project.description && (
                 <CardDescription className="mt-1 line-clamp-2">
                   {project.description}

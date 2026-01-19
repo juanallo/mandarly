@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useProjects, useCreateProject, useUpdateProject, useDeleteProject } from '@/hooks/use-projects';
 import { ProjectCard } from '@/components/projects/project-card';
 import { ProjectForm } from '@/components/projects/project-form';
@@ -160,14 +161,20 @@ export default function ProjectsPage() {
       ) : (
         <>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onEdit={handleEdit}
-                onDelete={handleDeleteClick}
-              />
-            ))}
+            {projects.map((project) => {
+              // #region agent log
+              fetch('http://127.0.0.1:7242/ingest/47654bf1-8284-473e-87a3-0ade33c8d6da',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects/page.tsx:163',message:'Rendering ProjectCard wrapped in Link',data:{projectId:project.id,isWrappedInLink:true},timestamp:Date.now(),sessionId:'debug-session',runId:'post-fix',hypothesisId:'B'})}).catch(()=>{});
+              // #endregion
+              return (
+                <Link key={project.id} href={`/projects/${project.id}`}>
+                  <ProjectCard
+                    project={project}
+                    onEdit={handleEdit}
+                    onDelete={handleDeleteClick}
+                  />
+                </Link>
+              );
+            })}
           </div>
 
           {/* Pagination info */}

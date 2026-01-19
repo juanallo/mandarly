@@ -78,6 +78,7 @@ export function RerunTaskSheet({ task, open, onOpenChange, onSubmit }: RerunTask
               onSubmit={handleSubmit}
               defaultValues={defaultValues}
               isLoading={isSubmitting}
+              hideButtons={true}
             />
           </div>
 

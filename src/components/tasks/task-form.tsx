@@ -47,9 +47,10 @@ interface TaskFormProps {
   onSubmit: (data: TaskFormData) => void | Promise<void>;
   defaultValues?: Partial<TaskFormData>;
   isLoading?: boolean;
+  hideButtons?: boolean;
 }
 
-export function TaskForm({ onSubmit, defaultValues, isLoading = false }: TaskFormProps) {
+export function TaskForm({ onSubmit, defaultValues, isLoading = false, hideButtons = false }: TaskFormProps) {
   const { data: presetsData } = usePresets();
   const { data: tasksData } = useTasks();
   const createPreset = useCreatePreset();
@@ -138,7 +139,7 @@ export function TaskForm({ onSubmit, defaultValues, isLoading = false }: TaskFor
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
+      <form id="task-form" onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
         {/* Preset Selector */}
         {presets.length > 0 && (
           <div className="space-y-2">
@@ -202,7 +203,6 @@ export function TaskForm({ onSubmit, defaultValues, isLoading = false }: TaskFor
 
         {/* Environment Configuration */}
       <div className="space-y-2">
-        <Label>Environment*</Label>
         <EnvironmentSelector
           value={environmentConfig}
           onChange={(config) => {
@@ -232,7 +232,6 @@ export function TaskForm({ onSubmit, defaultValues, isLoading = false }: TaskFor
 
       {/* AI Vendor Selection */}
       <div className="space-y-2">
-        <Label>AI Vendor*</Label>
         <AIVendorPicker
           value={aiVendor as AIVendor}
           onChange={(vendor) => setValue('aiVendor', vendor)}
@@ -243,25 +242,27 @@ export function TaskForm({ onSubmit, defaultValues, isLoading = false }: TaskFor
       </div>
 
       {/* Submit Button */}
-      <div className="flex justify-end space-x-2">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => setIsSavePresetDialogOpen(true)}
-          disabled={isSubmitting || isLoading}
-          className="gap-2"
-        >
-          <Save className="h-4 w-4" />
-          Save as Preset
-        </Button>
-        <Button
-          type="submit"
-          disabled={isSubmitting || isLoading}
-          className="min-w-[120px]"
-        >
-          {isSubmitting || isLoading ? 'Creating...' : 'Create Task'}
-        </Button>
-      </div>
+      {!hideButtons && (
+        <div className="flex justify-end space-x-2">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setIsSavePresetDialogOpen(true)}
+            disabled={isSubmitting || isLoading}
+            className="gap-2"
+          >
+            <Save className="h-4 w-4" />
+            Save as Preset
+          </Button>
+          <Button
+            type="submit"
+            disabled={isSubmitting || isLoading}
+            className="min-w-[120px]"
+          >
+            {isSubmitting || isLoading ? 'Creating...' : 'Create Task'}
+          </Button>
+        </div>
+      )}
     </form>
 
       {/* Save as Preset Dialog */}

@@ -27,12 +27,20 @@ async function fetchTasks(query: Partial<ListTasksQuery> = {}): Promise<TaskList
 }
 
 async function createTask(data: CreateTaskRequest): Promise<TaskWithProject> {
+  // Transform null values to undefined for optional fields to match API schema
+  const transformedData: CreateTaskRequest = {
+    ...data,
+    projectId: data.projectId === null ? undefined : data.projectId,
+    presetId: data.presetId === null ? undefined : data.presetId,
+    branchName: data.branchName === null || data.branchName === '' ? undefined : data.branchName,
+  };
+  
   const response = await fetch('/api/tasks', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(transformedData),
   });
 
   if (!response.ok) {

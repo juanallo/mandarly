@@ -63,7 +63,10 @@ export function TaskCard({ task, className, onRerun }: TaskCardProps) {
   const showWarnings = task.status !== 'completed' && task.status !== 'failed';
 
   return (
-    <Card className={cn('hover:shadow-md transition-shadow', className)} role="article">
+    <Card 
+      className={cn('hover:shadow-md transition-shadow cursor-pointer', className)} 
+      role="article"
+    >
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 space-y-1">
