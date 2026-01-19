@@ -212,17 +212,17 @@
 
 ### Implementation for User Story 6
 
-- [ ] T089 [US6] Create PresetCard component in src/components/presets/preset-card.tsx showing name, environment type, AI vendor with quick-apply button
-- [ ] T090 [P] [US6] Create PresetForm component in src/components/presets/preset-form.tsx with name, EnvironmentSelector, AIVendorPicker fields
-- [ ] T091 [US6] Create GET /api/presets route handler in src/app/api/presets/route.ts returning all presets
-- [ ] T092 [US6] Create POST /api/presets route handler in src/app/api/presets/route.ts validating CreatePresetRequest (unique name)
-- [ ] T093 [US6] Create GET /api/presets/[id] route handler in src/app/api/presets/[id]/route.ts
-- [ ] T094 [US6] Create PATCH /api/presets/[id] route handler in src/app/api/presets/[id]/route.ts validating UpdatePresetRequest
-- [ ] T095 [US6] Create DELETE /api/presets/[id] route handler in src/app/api/presets/[id]/route.ts
-- [ ] T096 [US6] Create usePresets hook in src/hooks/use-presets.ts with list, create, update, delete mutations
-- [ ] T097 [US6] Create Presets management page in src/app/presets/page.tsx with PresetCard grid and create dialog
-- [ ] T098 [US6] Add preset selector to TaskForm in src/components/tasks/task-form.tsx that auto-fills environment and AI vendor when preset selected
-- [ ] T099 [US6] Add "Save as Preset" button to TaskForm that opens PresetForm dialog with current configuration pre-filled
+- [X] T089 [US6] Create PresetCard component in src/components/presets/preset-card.tsx showing name, environment type, AI vendor with quick-apply button
+- [X] T090 [P] [US6] Create PresetForm component in src/components/presets/preset-form.tsx with name, EnvironmentSelector, AIVendorPicker fields
+- [X] T091 [US6] Create GET /api/presets route handler in src/app/api/presets/route.ts returning all presets
+- [X] T092 [US6] Create POST /api/presets route handler in src/app/api/presets/route.ts validating CreatePresetRequest (unique name)
+- [X] T093 [US6] Create GET /api/presets/[id] route handler in src/app/api/presets/[id]/route.ts
+- [X] T094 [US6] Create PATCH /api/presets/[id] route handler in src/app/api/presets/[id]/route.ts validating UpdatePresetRequest
+- [X] T095 [US6] Create DELETE /api/presets/[id] route handler in src/app/api/presets/[id]/route.ts
+- [X] T096 [US6] Create usePresets hook in src/hooks/use-presets.ts with list, create, update, delete mutations
+- [X] T097 [US6] Create Presets management page in src/app/presets/page.tsx with PresetCard grid and create dialog
+- [X] T098 [US6] Add preset selector to TaskForm in src/components/tasks/task-form.tsx that auto-fills environment and AI vendor when preset selected
+- [X] T099 [US6] Add "Save as Preset" button to TaskForm that opens PresetForm dialog with current configuration pre-filled
 
 **Checkpoint**: User Story 6 complete - can save, manage, and apply configuration presets
 
