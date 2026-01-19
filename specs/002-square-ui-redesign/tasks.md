@@ -27,8 +27,8 @@
 
 **Purpose**: Project configuration and shared utilities
 
-- [ ] T001 Create STATUS_CONFIG with colors, icons, labels for all 6 statuses in src/lib/constants.ts
-- [ ] T002 [P] Verify all existing dependencies are sufficient (no new packages needed)
+- [X] T001 Create STATUS_CONFIG with colors, icons, labels for all 6 statuses in src/lib/constants.ts
+- [X] T002 [P] Verify all existing dependencies are sufficient (no new packages needed)
 
 ---
 

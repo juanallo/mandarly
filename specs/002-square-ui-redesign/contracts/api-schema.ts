@@ -92,7 +92,7 @@ export type KanbanColumnProps = z.infer<typeof KanbanColumnPropsSchema>;
 export const KanbanBoardPropsSchema = z.object({
   tasks: z.array(z.any()), // TaskWithProject[]
   isLoading: z.boolean().optional(),
-  onTaskClick: z.function().args(z.any()).returns(z.void()).optional(),
+  onTaskClick: z.function().optional(),
 });
 
 export type KanbanBoardProps = z.infer<typeof KanbanBoardPropsSchema>;
@@ -102,7 +102,7 @@ export type KanbanBoardProps = z.infer<typeof KanbanBoardPropsSchema>;
  */
 export const SidebarPropsSchema = z.object({
   collapsed: z.boolean().optional(),
-  onCollapsedChange: z.function().args(z.boolean()).returns(z.void()).optional(),
+  onCollapsedChange: z.function().optional(),
 });
 
 export type SidebarProps = z.infer<typeof SidebarPropsSchema>;
