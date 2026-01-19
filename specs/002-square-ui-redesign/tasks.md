@@ -205,25 +205,25 @@
 
 ### Mobile Responsiveness
 
-- [ ] T059 Add mobile drawer behavior to sidebar in src/components/layout/sidebar.tsx
-- [ ] T060 Add hamburger menu button to header for mobile in src/components/layout/header.tsx
-- [ ] T061 Add responsive breakpoints for tablet/mobile in src/app/globals.css
-- [ ] T062 Ensure kanban columns stack or scroll horizontally on mobile in src/components/tasks/kanban-board.tsx
+- [X] T059 Add mobile drawer behavior to sidebar in src/components/layout/sidebar.tsx
+- [X] T060 Add hamburger menu button to header for mobile in src/components/layout/header.tsx
+- [X] T061 Add responsive breakpoints for tablet/mobile in src/app/globals.css
+- [X] T062 Ensure kanban columns stack or scroll horizontally on mobile in src/components/tasks/kanban-board.tsx
 
 ### Visual Polish
 
-- [ ] T063 [P] Verify consistent border-radius (8px cards, 6px badges) across all components
-- [ ] T064 [P] Verify consistent shadow usage (shadow-sm base, shadow-md hover)
-- [ ] T065 [P] Add smooth page transitions if not present
-- [ ] T066 Run full visual review against Square UI reference screenshots
+- [X] T063 [P] Verify consistent border-radius (8px cards, 6px badges) across all components
+- [X] T064 [P] Verify consistent shadow usage (shadow-sm base, shadow-md hover)
+- [X] T065 [P] Add smooth page transitions if not present
+- [X] T066 Run full visual review against Square UI reference screenshots
 
 ### Final Validation
 
-- [ ] T067 Run full test suite and verify 80% coverage target
-- [ ] T068 Run quickstart.md validation checklist
-- [ ] T068b Verify all existing features accessible (create task, view task, edit task, projects, presets) - SC-006 regression check
-- [ ] T069 Test keyboard navigation (Tab, Enter, Escape, Cmd+K)
-- [ ] T070 Verify WCAG 2.1 AA color contrast compliance
+- [X] T067 Run full test suite and verify 80% coverage target
+- [X] T068 Run quickstart.md validation checklist
+- [X] T068b Verify all existing features accessible (create task, view task, edit task, projects, presets) - SC-006 regression check
+- [X] T069 Test keyboard navigation (Tab, Enter, Escape, Cmd+K)
+- [X] T070 Verify WCAG 2.1 AA color contrast compliance
 
 ---
 
