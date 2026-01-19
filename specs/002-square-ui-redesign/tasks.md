@@ -191,9 +191,9 @@
 
 ### Implementation for User Story 6
 
-- [ ] T056 [US6] Verify command-search styling matches Square UI design in src/components/layout/command-search.tsx
-- [ ] T057 [US6] Add navigation items (Dashboard, Tasks, Projects, Presets) to command results in src/components/layout/command-search.tsx
-- [ ] T058 [US6] Ensure keyboard shortcut hint visible in header search button
+- [X] T056 [US6] Verify command-search styling matches Square UI design in src/components/layout/command-search.tsx
+- [X] T057 [US6] Add navigation items (Dashboard, Tasks, Projects, Presets) to command results in src/components/layout/command-search.tsx
+- [X] T058 [US6] Ensure keyboard shortcut hint visible in header search button
 
 **Checkpoint**: Command palette fully functional and styled
 

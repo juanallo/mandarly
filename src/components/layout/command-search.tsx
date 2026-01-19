@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/command';
 import { useTasks } from '@/hooks/use-tasks';
 import { useProjects } from '@/hooks/use-projects';
-import { FileText, FolderOpen, Search } from 'lucide-react';
+import { FileText, FolderOpen, Search, Home, CheckSquare, FolderKanban, Settings } from 'lucide-react';
 
 export function CommandSearch() {
   const [open, setOpen] = useState(false);
@@ -55,9 +55,29 @@ export function CommandSearch() {
       </button>
 
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Search tasks and projects..." />
+        <CommandInput placeholder="Search tasks, projects, or navigate..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
+          
+          {/* Navigation Items */}
+          <CommandGroup heading="Navigation">
+            <CommandItem onSelect={() => handleSelect('/')}>
+              <Home className="mr-2 h-4 w-4" />
+              <span>Dashboard</span>
+            </CommandItem>
+            <CommandItem onSelect={() => handleSelect('/tasks')}>
+              <CheckSquare className="mr-2 h-4 w-4" />
+              <span>Tasks</span>
+            </CommandItem>
+            <CommandItem onSelect={() => handleSelect('/projects')}>
+              <FolderKanban className="mr-2 h-4 w-4" />
+              <span>Projects</span>
+            </CommandItem>
+            <CommandItem onSelect={() => handleSelect('/presets')}>
+              <Settings className="mr-2 h-4 w-4" />
+              <span>Presets</span>
+            </CommandItem>
+          </CommandGroup>
           
           {projects.length > 0 && (
             <CommandGroup heading="Projects">
