@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
 // Mock the EnvironmentSelector component (will fail until implemented)
 // This test is written FIRST per TDD approach
@@ -17,9 +17,9 @@ describe('EnvironmentSelector', () => {
       />
     );
 
-    expect(screen.getByText(/local/i)).toBeInTheDocument();
-    expect(screen.getByText(/worktree/i)).toBeInTheDocument();
-    expect(screen.getByText(/remote/i)).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /local/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /worktree/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /remote/i })).toBeInTheDocument();
   });
 
   it('should show no additional fields for local environment', async () => {
@@ -75,6 +75,7 @@ describe('EnvironmentSelector', () => {
   it('should call onChange when switching environment types', async () => {
     const { EnvironmentSelector } = await import('@/components/tasks/environment-selector');
     const mockOnChange = vi.fn();
+    const user = userEvent.setup();
     
     render(
       <EnvironmentSelector
@@ -83,8 +84,8 @@ describe('EnvironmentSelector', () => {
       />
     );
 
-    const worktreeTab = screen.getByText(/worktree/i);
-    fireEvent.click(worktreeTab);
+    const worktreeTab = screen.getByRole('tab', { name: /worktree/i });
+    await user.click(worktreeTab);
 
     await waitFor(() => {
       expect(mockOnChange).toHaveBeenCalledWith(
