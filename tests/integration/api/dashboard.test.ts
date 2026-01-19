@@ -2,13 +2,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { db } from '@/lib/db/client';
 import { tasks, projects } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
-
-// Helper to make API request
-async function apiRequest(path: string, options?: RequestInit) {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-  const response = await fetch(`${baseUrl}${path}`, options);
-  return response;
-}
+import { GET } from '@/app/api/dashboard/route';
 
 describe('GET /api/dashboard', () => {
   let testProjectId: string;
@@ -116,7 +110,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('returns dashboard stats successfully', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     expect(response.status).toBe(200);
 
     const data = await response.json();
@@ -130,7 +124,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('calculates total tasks correctly', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     expect(typeof data.totalTasks).toBe('number');
@@ -138,7 +132,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('calculates active tasks correctly', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     expect(typeof data.activeTasks).toBe('number');
@@ -147,7 +141,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('calculates completed today count', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     expect(typeof data.completedToday).toBe('number');
@@ -156,7 +150,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('calculates failed today count', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     expect(typeof data.failedToday).toBe('number');
@@ -165,7 +159,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('returns recent tasks array', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     expect(Array.isArray(data.recentTasks)).toBe(true);
@@ -180,7 +174,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('limits recent tasks to reasonable number', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     // Recent tasks should be limited (e.g., 10-20 max)
@@ -188,7 +182,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('sorts recent tasks by creation date descending', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     const recentTasks = data.recentTasks;
@@ -201,7 +195,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('groups tasks by status correctly', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     expect(typeof data.tasksByStatus).toBe('object');
@@ -219,7 +213,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('groups tasks by environment type correctly', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     expect(typeof data.tasksByEnvironment).toBe('object');
@@ -231,7 +225,7 @@ describe('GET /api/dashboard', () => {
   });
 
   it('includes project info in recent tasks when available', async () => {
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     const data = await response.json();
     
     const taskWithProject = data.recentTasks.find(
@@ -250,7 +244,7 @@ describe('GET /api/dashboard', () => {
       await db.delete(tasks).where(eq(tasks.id, taskId));
     }
     
-    const response = await apiRequest('/api/dashboard');
+    const response = await GET();
     expect(response.status).toBe(200);
     
     const data = await response.json();
