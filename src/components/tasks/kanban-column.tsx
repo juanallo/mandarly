@@ -28,12 +28,13 @@ export function KanbanColumn({
   return (
     <div
       className={cn(
-        'flex w-80 flex-shrink-0 flex-col rounded-lg border bg-gray-50',
+        'flex w-80 flex-shrink-0 flex-col rounded-lg border-2 bg-gray-50',
+        status.borderColor,
         className
       )}
     >
       {/* Column Header */}
-      <div className={cn('flex items-center justify-between border-b p-4', status.bgColor)}>
+      <div className={cn('flex items-center justify-between p-4', status.bgColor)}>
         <div className="flex items-center gap-2">
           <IconComponent className={cn('h-5 w-5', status.color)} />
           <h3 className={cn('font-semibold', status.color)}>{status.label}</h3>
