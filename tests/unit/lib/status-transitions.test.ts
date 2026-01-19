@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { isValidTransition, getValidNextStates } from '@/lib/status-transitions';
+import {
+  isValidTransition,
+  getValidNextStates,
+  validateTransition,
+  isTerminalStatus,
+  getStatusDescription,
+  getTransitionLabel,
+} from '@/lib/status-transitions';
 
 // Unit test for status state machine transitions
 // This test is written FIRST per TDD approach
@@ -119,5 +126,119 @@ describe('Status Transitions', () => {
     expect(isValidTransition('pending', 'running')).toBe(true);
     expect(isValidTransition('running', 'disconnected')).toBe(true);
     expect(isValidTransition('disconnected', 'failed')).toBe(true);
+  });
+
+  describe('validateTransition', () => {
+    it('should not throw for valid transition', () => {
+      expect(() => validateTransition('pending', 'running')).not.toThrow();
+    });
+
+    it('should throw for invalid transition', () => {
+      expect(() => validateTransition('pending', 'completed')).toThrow(
+        'Invalid status transition: pending -> completed'
+      );
+    });
+
+    it('should include valid transitions in error message', () => {
+      expect(() => validateTransition('running', 'pending')).toThrow(
+        /Valid transitions from running:/
+      );
+    });
+
+    it('should handle terminal states in error message', () => {
+      expect(() => validateTransition('completed', 'running')).toThrow(
+        /none/
+      );
+    });
+  });
+
+  describe('isTerminalStatus', () => {
+    it('should return true for completed status', () => {
+      expect(isTerminalStatus('completed')).toBe(true);
+    });
+
+    it('should return true for failed status', () => {
+      expect(isTerminalStatus('failed')).toBe(true);
+    });
+
+    it('should return false for pending status', () => {
+      expect(isTerminalStatus('pending')).toBe(false);
+    });
+
+    it('should return false for running status', () => {
+      expect(isTerminalStatus('running')).toBe(false);
+    });
+
+    it('should return false for paused status', () => {
+      expect(isTerminalStatus('paused')).toBe(false);
+    });
+
+    it('should return false for disconnected status', () => {
+      expect(isTerminalStatus('disconnected')).toBe(false);
+    });
+  });
+
+  describe('getStatusDescription', () => {
+    it('should return description for pending', () => {
+      expect(getStatusDescription('pending')).toBe('Task is queued and waiting to start');
+    });
+
+    it('should return description for running', () => {
+      expect(getStatusDescription('running')).toBe('Task is currently being executed');
+    });
+
+    it('should return description for completed', () => {
+      expect(getStatusDescription('completed')).toBe('Task finished successfully');
+    });
+
+    it('should return description for failed', () => {
+      expect(getStatusDescription('failed')).toBe('Task encountered an error and stopped');
+    });
+
+    it('should return description for paused', () => {
+      expect(getStatusDescription('paused')).toBe('Task was paused by user');
+    });
+
+    it('should return description for disconnected', () => {
+      expect(getStatusDescription('disconnected')).toBe('Task lost connection to execution environment');
+    });
+  });
+
+  describe('getTransitionLabel', () => {
+    it('should return Start for pending -> running', () => {
+      expect(getTransitionLabel('pending', 'running')).toBe('Start');
+    });
+
+    it('should return Complete for running -> completed', () => {
+      expect(getTransitionLabel('running', 'completed')).toBe('Complete');
+    });
+
+    it('should return Fail for running -> failed', () => {
+      expect(getTransitionLabel('running', 'failed')).toBe('Fail');
+    });
+
+    it('should return Pause for running -> paused', () => {
+      expect(getTransitionLabel('running', 'paused')).toBe('Pause');
+    });
+
+    it('should return Mark Disconnected for running -> disconnected', () => {
+      expect(getTransitionLabel('running', 'disconnected')).toBe('Mark Disconnected');
+    });
+
+    it('should return Resume for paused -> running', () => {
+      expect(getTransitionLabel('paused', 'running')).toBe('Resume');
+    });
+
+    it('should return Resume for disconnected -> running', () => {
+      expect(getTransitionLabel('disconnected', 'running')).toBe('Resume');
+    });
+
+    it('should return Mark Failed for disconnected -> failed', () => {
+      expect(getTransitionLabel('disconnected', 'failed')).toBe('Mark Failed');
+    });
+
+    it('should return target status for unknown transition', () => {
+      expect(getTransitionLabel('pending', 'failed')).toBe('failed');
+    });
   });
 });
