@@ -19,14 +19,14 @@
 
 **Purpose**: Project initialization and basic structure per plan.md
 
-- [ ] T001 Create Next.js project with TypeScript, Tailwind, App Router, src directory using create-next-app
-- [ ] T002 Install core dependencies: @tanstack/react-query, zod, react-hook-form, @hookform/resolvers, lucide-react, class-variance-authority, clsx, tailwind-merge
-- [ ] T003 [P] Install database dependencies: drizzle-orm, better-sqlite3, @paralleldrive/cuid2, drizzle-kit, @types/better-sqlite3
-- [ ] T004 [P] Install dev dependencies: vitest, @testing-library/react, @testing-library/jest-dom, jsdom, playwright, @playwright/test
-- [ ] T005 Initialize shadcn/ui with default style and add core components (button, input, label, card, dialog, sheet, table, badge, tabs, command, form, select, textarea, separator, skeleton, tooltip)
-- [ ] T006 Create directory structure per plan.md: src/app/api/{tasks,projects,presets}, src/components/{ui,tasks,projects,presets,layout}, src/lib/{db,api}, src/hooks, src/types, tests/{unit,integration,e2e}
-- [ ] T007 [P] Create .data/ directory for SQLite and add to .gitignore
-- [ ] T008 [P] Create .env.local with DATABASE_URL and NEXT_PUBLIC_APP_NAME
+- [X] T001 Create Next.js project with TypeScript, Tailwind, App Router, src directory using create-next-app
+- [X] T002 Install core dependencies: @tanstack/react-query, zod, react-hook-form, @hookform/resolvers, lucide-react, class-variance-authority, clsx, tailwind-merge
+- [X] T003 [P] Install database dependencies: drizzle-orm, better-sqlite3, @paralleldrive/cuid2, drizzle-kit, @types/better-sqlite3
+- [X] T004 [P] Install dev dependencies: vitest, @testing-library/react, @testing-library/jest-dom, jsdom, @playwright/test
+- [X] T005 Initialize shadcn/ui with default style and add core components (button, input, label, card, dialog, sheet, table, badge, tabs, command, form, select, textarea, separator, skeleton, tooltip)
+- [X] T006 Create directory structure per plan.md: src/app/api/{tasks,projects,presets}, src/components/{ui,tasks,projects,presets,layout}, src/lib/{db,api}, src/hooks, src/types, tests/{unit,integration,e2e}
+- [X] T007 [P] Create .data/ directory for SQLite and add to .gitignore
+- [X] T008 [P] Create .env.local with DATABASE_URL and NEXT_PUBLIC_APP_NAME
 
 ---
 
@@ -36,24 +36,24 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T009 Create drizzle.config.ts at project root with SQLite configuration pointing to .data/tracker.db
-- [ ] T010 Create database schema with all entities (projects, tasks, configPresets, statusHistory) in src/lib/db/schema.ts per data-model.md Drizzle schema
-- [ ] T011 Create database client singleton in src/lib/db/client.ts with better-sqlite3 connection
-- [ ] T012 Run initial database migration with drizzle-kit push:sqlite
-- [ ] T013 Create shared TypeScript types in src/types/index.ts exporting Task, Project, ConfigPreset, StatusHistory, EnvironmentConfig types
-- [ ] T014 Create API schemas by copying contracts/api-schema.ts to src/lib/api/schemas.ts
-- [ ] T015 Create utility functions (cn helper for classnames) in src/lib/utils.ts
-- [ ] T016 Create app constants (TaskStatus, EnvironmentType, AIVendor enums) in src/lib/constants.ts
-- [ ] T017 Create React Query provider component in src/components/providers.tsx with QueryClientProvider
-- [ ] T018 Create root layout in src/app/layout.tsx with Providers wrapper and basic flex layout structure
-- [ ] T019 Create Sidebar component in src/components/layout/sidebar.tsx with navigation links to /, /tasks, /projects, /presets
-- [ ] T020 [P] Create Header component in src/components/layout/header.tsx with app title and search trigger
-- [ ] T021 [P] Create EmptyState component in src/components/layout/empty-state.tsx for empty list states
-- [ ] T022 Add package.json scripts for db:generate, db:migrate, db:studio, test, and e2e
-- [ ] T023 Create vitest.config.ts with coverage thresholds (80% minimum), jsdom environment, and path aliases
-- [ ] T024 Create playwright.config.ts with webServer configuration and test directory setup
-- [ ] T025 Create tests/setup.ts with @testing-library/jest-dom imports
-- [ ] T026 [P] Create GitHub Actions CI workflow in .github/workflows/ci.yml with lint, type-check, test, and coverage gates
+- [X] T009 Create drizzle.config.ts at project root with SQLite configuration pointing to .data/tracker.db
+- [X] T010 Create database schema with all entities (projects, tasks, configPresets, statusHistory) in src/lib/db/schema.ts per data-model.md Drizzle schema
+- [X] T011 Create database client singleton in src/lib/db/client.ts with better-sqlite3 connection
+- [X] T012 Run initial database migration with drizzle-kit push:sqlite
+- [X] T013 Create shared TypeScript types in src/types/index.ts exporting Task, Project, ConfigPreset, StatusHistory, EnvironmentConfig types
+- [X] T014 Create API schemas by copying contracts/api-schema.ts to src/lib/api/schemas.ts
+- [X] T015 Create utility functions (cn helper for classnames) in src/lib/utils.ts
+- [X] T016 Create app constants (TaskStatus, EnvironmentType, AIVendor enums) in src/lib/constants.ts
+- [X] T017 Create React Query provider component in src/components/providers.tsx with QueryClientProvider
+- [X] T018 Create root layout in src/app/layout.tsx with Providers wrapper and basic flex layout structure
+- [X] T019 Create Sidebar component in src/components/layout/sidebar.tsx with navigation links to /, /tasks, /projects, /presets
+- [X] T020 [P] Create Header component in src/components/layout/header.tsx with app title and search trigger
+- [X] T021 [P] Create EmptyState component in src/components/layout/empty-state.tsx for empty list states
+- [X] T022 Add package.json scripts for db:generate, db:migrate, db:studio, test, and e2e
+- [X] T023 Create vitest.config.ts with coverage thresholds (80% minimum), jsdom environment, and path aliases
+- [X] T024 Create playwright.config.ts with webServer configuration and test directory setup
+- [X] T025 Create tests/setup.ts with @testing-library/jest-dom imports
+- [X] T026 [P] Create GitHub Actions CI workflow in .github/workflows/ci.yml with lint, type-check, test, and coverage gates
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
