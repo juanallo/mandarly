@@ -40,13 +40,13 @@
 
 ### Sidebar Collapse Hook
 
-- [ ] T004 Create use-sidebar hook with localStorage persistence in src/hooks/use-sidebar.ts
-- [ ] T005 [P] Write unit test for use-sidebar hook in tests/unit/hooks/use-sidebar.test.ts
+- [X] T004 Create use-sidebar hook with localStorage persistence in src/hooks/use-sidebar.ts
+- [X] T005 [P] Write unit test for use-sidebar hook in tests/unit/hooks/use-sidebar.test.ts
 
 ### Layout Integration
 
-- [ ] T006 Update root layout to use sidebar state in src/app/layout.tsx
-- [ ] T007 Add CSS variables for sidebar widths (expanded: 256px, collapsed: 64px) in src/app/globals.css
+- [X] T006 Update root layout to use sidebar state in src/app/layout.tsx
+- [X] T007 Add CSS variables for sidebar widths (expanded: 256px, collapsed: 64px) in src/app/globals.css
 
 **Checkpoint**: Foundation ready - sidebar state management available globally
 
