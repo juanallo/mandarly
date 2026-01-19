@@ -87,20 +87,20 @@
 
 ### Tests for User Story 3
 
-- [ ] T018 [P] [US3] Write unit test for breadcrumbs generation in tests/unit/components/breadcrumbs.test.tsx
-- [ ] T019 [P] [US3] Write unit test for header contextual actions in tests/unit/components/header.test.tsx
+- [X] T018 [P] [US3] Write unit test for breadcrumbs generation in tests/unit/components/breadcrumbs.test.tsx
+- [X] T019 [P] [US3] Write unit test for header contextual actions in tests/unit/components/header.test.tsx
 
 ### Implementation for User Story 3
 
-- [ ] T020 [P] [US3] Create breadcrumbs component in src/components/layout/breadcrumbs.tsx
-- [ ] T021 [US3] Enhance header with page title display in src/components/layout/header.tsx
-- [ ] T022 [US3] Add breadcrumb navigation to header in src/components/layout/header.tsx
-- [ ] T023 [US3] Add search trigger button with keyboard hint (⌘K) in src/components/layout/header.tsx
-- [ ] T024 [US3] Add contextual action buttons prop to header in src/components/layout/header.tsx
-- [ ] T025 [US3] Add notification indicator placeholder in src/components/layout/header.tsx
-- [ ] T026 [US3] Add user avatar to header right side in src/components/layout/header.tsx
-- [ ] T027 [US3] Update all page components to pass contextual actions to header
-- [ ] T027b [US3] Verify header layout at mobile breakpoint (640px)
+- [X] T020 [P] [US3] Create breadcrumbs component in src/components/layout/breadcrumbs.tsx
+- [X] T021 [US3] Enhance header with page title display in src/components/layout/header.tsx
+- [X] T022 [US3] Add breadcrumb navigation to header in src/components/layout/header.tsx
+- [X] T023 [US3] Add search trigger button with keyboard hint (⌘K) in src/components/layout/header.tsx
+- [X] T024 [US3] Add contextual action buttons prop to header in src/components/layout/header.tsx
+- [X] T025 [US3] Add notification indicator placeholder in src/components/layout/header.tsx
+- [X] T026 [US3] Add user avatar to header right side in src/components/layout/header.tsx
+- [X] T027 [US3] Update all page components to pass contextual actions to header
+- [X] T027b [US3] Verify header layout at mobile breakpoint (640px)
 
 **Checkpoint**: Header fully functional - breadcrumbs, search, actions visible on all pages
 
