@@ -1,8 +1,8 @@
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon, Inbox } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface EmptyStateProps {
-  icon: LucideIcon;
+  icon?: LucideIcon;
   title: string;
   description: string;
   action?: {
@@ -11,7 +11,9 @@ interface EmptyStateProps {
   };
 }
 
-export function EmptyState({ icon: Icon, title, description, action }: EmptyStateProps) {
+export function EmptyState({ icon, title, description, action }: EmptyStateProps) {
+  const Icon = icon || Inbox;
+  
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
       <div className="rounded-full bg-gray-100 p-6">

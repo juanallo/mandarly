@@ -67,23 +67,23 @@
 
 ### Tests for User Story 1 (Write FIRST, verify they FAIL)
 
-- [ ] T027 [P] [US1] Unit test for TaskStatusBadge component in tests/unit/components/task-status-badge.test.tsx
-- [ ] T028 [P] [US1] Unit test for TaskCard component in tests/unit/components/task-card.test.tsx
-- [ ] T029 [P] [US1] Integration test for GET /api/tasks endpoint in tests/integration/api/tasks.test.ts
-- [ ] T030 [US1] Integration test for dashboard data fetching in tests/integration/api/dashboard.test.ts
+- [X] T027 [P] [US1] Unit test for TaskStatusBadge component in tests/unit/components/task-status-badge.test.tsx
+- [X] T028 [P] [US1] Unit test for TaskCard component in tests/unit/components/task-card.test.tsx
+- [X] T029 [P] [US1] Integration test for GET /api/tasks endpoint in tests/integration/api/tasks.test.ts
+- [X] T030 [US1] Integration test for dashboard data fetching in tests/integration/api/dashboard.test.ts
 
 ### Implementation for User Story 1
 
-- [ ] T031 [US1] Create TaskStatusBadge component in src/components/tasks/task-status-badge.tsx with color-coded status display
-- [ ] T032 [P] [US1] Create TaskCard component in src/components/tasks/task-card.tsx displaying description, status, environment, AI vendor, timestamps
-- [ ] T033 [P] [US1] Create TaskFilters component in src/components/tasks/task-filters.tsx with status, project, environment, AI vendor filter options
-- [ ] T034 [US1] Create TaskList component in src/components/tasks/task-list.tsx composing TaskCard and TaskFilters with grouping by project
-- [ ] T035 [US1] Create GET /api/tasks route handler in src/app/api/tasks/route.ts with pagination, filtering, sorting per ListTasksQuery schema
-- [ ] T036 [US1] Create useTasks hook in src/hooks/use-tasks.ts with React Query for fetching tasks with filters
-- [ ] T037 [US1] Create GET /api/dashboard route handler in src/app/api/dashboard/route.ts returning DashboardStats (totalTasks, activeTasks, completedToday, tasksByStatus, recentTasks)
-- [ ] T038 [US1] Create useDashboard hook in src/hooks/use-dashboard.ts with React Query for dashboard stats
-- [ ] T039 [US1] Create Dashboard page in src/app/page.tsx showing task overview stats, recent tasks, and quick access to task list
-- [ ] T040 [US1] Create Tasks list page in src/app/tasks/page.tsx with full TaskList component and filtering
+- [X] T031 [US1] Create TaskStatusBadge component in src/components/tasks/task-status-badge.tsx with color-coded status display
+- [X] T032 [P] [US1] Create TaskCard component in src/components/tasks/task-card.tsx displaying description, status, environment, AI vendor, timestamps
+- [X] T033 [P] [US1] Create TaskFilters component in src/components/tasks/task-filters.tsx with status, project, environment, AI vendor filter options
+- [X] T034 [US1] Create TaskList component in src/components/tasks/task-list.tsx composing TaskCard and TaskFilters with grouping by project
+- [X] T035 [US1] Create GET /api/tasks route handler in src/app/api/tasks/route.ts with pagination, filtering, sorting per ListTasksQuery schema
+- [X] T036 [US1] Create useTasks hook in src/hooks/use-tasks.ts with React Query for fetching tasks with filters
+- [X] T037 [US1] Create GET /api/dashboard route handler in src/app/api/dashboard/route.ts returning DashboardStats (totalTasks, activeTasks, completedToday, tasksByStatus, recentTasks)
+- [X] T038 [US1] Create useDashboard hook in src/hooks/use-dashboard.ts with React Query for dashboard stats
+- [X] T039 [US1] Create Dashboard page in src/app/page.tsx showing task overview stats, recent tasks, and quick access to task list
+- [X] T040 [US1] Create Tasks list page in src/app/tasks/page.tsx with full TaskList component and filtering
 
 **Checkpoint**: User Story 1 complete - can view all tasks in dashboard and list view
 
