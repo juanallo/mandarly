@@ -3,7 +3,7 @@ import { db } from '@/lib/db/client';
 import { tasks, projects, statusHistory } from '@/lib/db/schema';
 import { UpdateTaskRequest } from '@/lib/api/schemas';
 import { validateTransition } from '@/lib/status-transitions';
-import { eq } from 'drizzle-orm';
+import { eq, and } from 'drizzle-orm';
 
 // GET /api/tasks/[id] - Get a single task by ID
 export async function GET(
@@ -199,6 +199,58 @@ export async function PATCH(
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to update task',
+        },
+      },
+      { status: 500 }
+    );
+  }
+}
+
+// DELETE /api/tasks/[id] - Delete a task and its status history
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id: taskId } = await params;
+
+    // Check if task exists
+    const [existingTask] = await db
+      .select()
+      .from(tasks)
+      .where(eq(tasks.id, taskId));
+
+    if (!existingTask) {
+      return NextResponse.json(
+        {
+          error: {
+            code: 'NOT_FOUND',
+            message: 'Task not found',
+          },
+        },
+        { status: 404 }
+      );
+    }
+
+    // Delete status history entries first (cascade)
+    await db
+      .delete(statusHistory)
+      .where(eq(statusHistory.taskId, taskId));
+
+    // Delete the task
+    await db
+      .delete(tasks)
+      .where(eq(tasks.id, taskId));
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting task:', error);
+
+    return NextResponse.json(
+      {
+        error: {
+          code: 'INTERNAL_ERROR',
+          message: 'Failed to delete task',
         },
       },
       { status: 500 }

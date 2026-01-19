@@ -173,4 +173,26 @@ export function useTaskHistory(id: string) {
   });
 }
 
-// Additional hooks will be added as we implement more features
+// Delete task
+async function deleteTask(id: string): Promise<void> {
+  const response = await fetch(`/api/tasks/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error?.message || 'Failed to delete task');
+  }
+}
+
+export function useDeleteTask() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteTask,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: taskKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
+    },
+  });
+}

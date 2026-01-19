@@ -275,19 +275,19 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T122 [P] Implement Command+K search dialog in src/components/layout/command-search.tsx searching tasks and projects
-- [ ] T123 [P] Add DELETE /api/tasks/[id] route handler in src/app/api/tasks/[id]/route.ts with cascade delete of status history
-- [ ] T124 [P] Create useDeleteTask mutation hook in src/hooks/use-tasks.ts
-- [ ] T125 Add delete confirmation dialog and button to task detail page
-- [ ] T126 [P] Create JSON export endpoint POST /api/export in src/app/api/export/route.ts exporting tasks and projects per FR-013
-- [ ] T127 Add export button to dashboard or settings area
-- [ ] T128 Implement loading skeletons for TaskList, ProjectCard, Dashboard using shadcn Skeleton
-- [ ] T129 [P] Add error boundary and error handling UI for API failures
-- [ ] T130 [P] Create Indie UI enhanced components directory at src/components/ui/indie/ with StatefulButton from ui.indie-starter.dev
-- [ ] T131 Replace standard buttons with StatefulButton for async actions (create, save, delete)
-- [ ] T132 Add responsive design adjustments for mobile/tablet viewports
-- [ ] T133 Run quickstart.md validation - verify all setup steps work correctly
-- [ ] T134 Performance review: verify task list renders <100ms for 100 tasks per plan.md requirements
+- [X] T122 [P] Implement Command+K search dialog in src/components/layout/command-search.tsx searching tasks and projects
+- [X] T123 [P] Add DELETE /api/tasks/[id] route handler in src/app/api/tasks/[id]/route.ts with cascade delete of status history
+- [X] T124 [P] Create useDeleteTask mutation hook in src/hooks/use-tasks.ts
+- [X] T125 Add delete confirmation dialog and button to task detail page
+- [X] T126 [P] Create JSON export endpoint POST /api/export in src/app/api/export/route.ts exporting tasks and projects per FR-013
+- [X] T127 Add export button to dashboard or settings area
+- [X] T128 Implement loading skeletons for TaskList, ProjectCard, Dashboard using shadcn Skeleton
+- [X] T129 [P] Add error boundary and error handling UI for API failures
+- [X] T130 [P] Create Indie UI enhanced components directory at src/components/ui/indie/ with StatefulButton from ui.indie-starter.dev
+- [X] T131 Replace standard buttons with StatefulButton for async actions (create, save, delete)
+- [X] T132 Add responsive design adjustments for mobile/tablet viewports
+- [X] T133 Run quickstart.md validation - verify all setup steps work correctly
+- [X] T134 Performance review: verify task list renders <100ms for 100 tasks per plan.md requirements
 
 ---
 
