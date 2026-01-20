@@ -1,4 +1,4 @@
-# Feature Specification: AI Task Tracker
+# Feature Specification: Mandarly
 
 **Feature Branch**: `001-ai-task-tracker`  
 **Created**: 2026-01-18  

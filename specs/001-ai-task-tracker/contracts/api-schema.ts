@@ -1,5 +1,5 @@
 /**
- * API Schema Contracts for AI Task Tracker
+ * API Schema Contracts for Mandarly
  * 
  * These Zod schemas define the API contract for all endpoints.
  * Used for request validation and response typing.

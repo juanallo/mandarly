@@ -3,6 +3,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import { OnboardingTour } from './layout/onboarding-tour';
+import { SidebarProvider } from './sidebar-provider';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
@@ -19,8 +20,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
-      <OnboardingTour />
+      <SidebarProvider>
+        {children}
+        <OnboardingTour />
+      </SidebarProvider>
     </QueryClientProvider>
   );
 }

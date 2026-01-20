@@ -49,7 +49,7 @@ export function OnboardingTour() {
   const steps = [
     {
       icon: <Sparkles className="h-12 w-12 text-primary" />,
-      title: 'Welcome to AI Task Tracker!',
+      title: 'Welcome to Mandarly!',
       description: 'Track and manage AI-assisted coding tasks across different environments. Let\'s get you started with a quick tour.',
     },
     {

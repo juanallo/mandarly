@@ -105,13 +105,6 @@ export default function PresetsPage() {
   if (error) {
     return (
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">Configuration Presets</h1>
-          <Button onClick={() => setIsCreateDialogOpen(true)}>
-            <Plus className="mr-2 h-4 w-4" />
-            New Preset
-          </Button>
-        </div>
         <Card className="border-red-200 bg-red-50">
           <CardContent className="pt-6">
             <p className="text-red-600">Failed to load presets. Please try again.</p>
@@ -124,13 +117,6 @@ export default function PresetsPage() {
   if (isLoading) {
     return (
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">Configuration Presets</h1>
-          <Button onClick={() => setIsCreateDialogOpen(true)}>
-            <Plus className="mr-2 h-4 w-4" />
-            New Preset
-          </Button>
-        </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
             <Skeleton key={i} className="h-48 w-full" />
@@ -144,20 +130,6 @@ export default function PresetsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Configuration Presets</h1>
-          <p className="text-muted-foreground mt-1">
-            Save and reuse your favorite environment and AI vendor combinations
-          </p>
-        </div>
-        <Button onClick={() => setIsCreateDialogOpen(true)}>
-          <Plus className="mr-2 h-4 w-4" />
-          New Preset
-        </Button>
-      </div>
-
       {/* Presets Grid */}
       {presets.length === 0 ? (
         <EmptyState

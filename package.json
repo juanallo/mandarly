@@ -10,6 +10,9 @@
     "lint": "eslint src/",
     "test": "vitest",
     "test:ui": "vitest --ui",
+    "test:vr": "playwright test --config=playwright-ct.config.ts",
+    "test:vr:ui": "playwright test --config=playwright-ct.config.ts --ui",
+    "test:vr:update": "playwright test --config=playwright-ct.config.ts --update-snapshots",
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",
     "db:generate": "drizzle-kit generate",
@@ -48,6 +51,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
+    "@playwright/experimental-ct-react": "^1.57.0",
     "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@testing-library/jest-dom": "^6.9.1",

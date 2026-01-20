@@ -1,7 +1,7 @@
 {
-  "name": "AI Task Tracker",
-  "short_name": "Task Tracker",
-  "description": "Track and manage AI-assisted coding tasks across different environments",
+  "name": "Mandarly",
+  "short_name": "Mandarly",
+  "description": "Mandarly is a tool for managing your AI-assisted coding tasks across different environments",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -2,6 +2,7 @@
 
 import { useDashboard } from '@/hooks/use-dashboard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { StatsCard } from '@/components/dashboard/stats-card';
 import { TaskCard } from '@/components/tasks/task-card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Activity, CheckCircle2, XCircle, Clock } from 'lucide-react';
@@ -40,59 +41,43 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <Link href="/tasks/new">
-          <Button>New Task</Button>
-        </Link>
-      </div>
-
-      {/* Stats Cards */}
+      {/* Stats Cards with Trends */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Tasks</CardTitle>
-            <Activity className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats?.totalTasks || 0}</div>
-            <p className="text-xs text-muted-foreground">All time</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Tasks</CardTitle>
-            <Clock className="h-4 w-4 text-blue-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{stats?.activeTasks || 0}</div>
-            <p className="text-xs text-muted-foreground">Pending, running, paused</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Completed Today</CardTitle>
-            <CheckCircle2 className="h-4 w-4 text-green-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-green-600">{stats?.completedToday || 0}</div>
-            <p className="text-xs text-muted-foreground">Tasks completed today</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Failed Today</CardTitle>
-            <XCircle className="h-4 w-4 text-red-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-red-600">{stats?.failedToday || 0}</div>
-            <p className="text-xs text-muted-foreground">Tasks failed today</p>
-          </CardContent>
-        </Card>
+        <StatsCard
+          title="Total Tasks"
+          value={stats?.totalTasks || 0}
+          icon={Activity}
+          trend={stats?.trends?.totalTasks}
+          description="vs last week"
+          isLoading={isLoading}
+        />
+        
+        <StatsCard
+          title="Active Tasks"
+          value={stats?.activeTasks || 0}
+          icon={Clock}
+          trend={stats?.trends?.activeTasks}
+          description="vs yesterday"
+          isLoading={isLoading}
+        />
+        
+        <StatsCard
+          title="Completed Today"
+          value={stats?.completedToday || 0}
+          icon={CheckCircle2}
+          trend={stats?.trends?.completedToday}
+          description="vs yesterday"
+          isLoading={isLoading}
+        />
+        
+        <StatsCard
+          title="Failed Today"
+          value={stats?.failedToday || 0}
+          icon={XCircle}
+          trend={stats?.trends?.failedToday}
+          description="vs yesterday"
+          isLoading={isLoading}
+        />
       </div>
 
       {/* Status Breakdown */}
